@@ -1,17 +1,13 @@
 import {
   AppBar,
   Toolbar,
-  CssBaseline,
-  Typography,
   IconButton,
-  Button,
   Badge,
   MenuItem,
   Menu,
   InputBase,
 } from "@mui/material";
 import MenuSharpIcon from "@mui/icons-material/MenuSharp";
-import { Box } from "@mui/system";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
@@ -27,8 +23,8 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
+// import theme from "../Breakpoints";
 // import {createTheme} from "@mui/material/styles";
-// import { ThemeProvider } from '@mui/private-theming';
 
 // const theme = createTheme({
 //     palette: {
@@ -56,9 +52,19 @@ const Navbar = () => {
     "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    margin: theme.spacing(1.2, 2, 1.2, 0),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
+      margin: theme.spacing(1, 2, 1, 0),
+      marginLeft: theme.spacing(3),
+      width: "auto",
+    },
+    [theme.breakpoints.up("lg")]: {
+      margin: theme.spacing(1, 2, 1, 0),
+      marginLeft: theme.spacing(1),
+      width: "auto",
+    },
+    [theme.breakpoints.up("xl")]: {
+      margin: theme.spacing(1, 2, 1, 0),
       marginLeft: theme.spacing(3),
       width: "auto",
     },
@@ -81,7 +87,10 @@ const Navbar = () => {
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create("width"),
       width: "100%",
-      [theme.breakpoints.up("md")]: {
+      [theme.breakpoints.up("lg")]: {
+        width: "15ch",
+      },
+      [theme.breakpoints.up("xl")]: {
         width: "25ch",
       },
       marginTop: theme.spacing(0.5),
@@ -91,8 +100,8 @@ const Navbar = () => {
   return (
     <AppBar elevation={1} sx={{ backgroundColor: "#03588C" }}>
       <Toolbar>
-        <Grid container spacing={2}>
-          <Grid item xs={1.25}>
+        <Grid container spacing={1}>
+          <Grid item xs={10} sm={8} md={9} lg={2} xl={1.25}>
             {/* logo and search*/}
             <img
               src={require("../Pictures/logo.png")}
@@ -100,12 +109,21 @@ const Navbar = () => {
               width="200px"
               alt="Logo of the website"
             />
-            {/* <IconButton sx={{ color: "white" }}><MenuSharpIcon /></IconButton> */}
-            {/* <IconButton sx={{ color: "white" }}>
-              <SearchIcon />
-            </IconButton> */}
           </Grid>
-          <Grid item xs={2.15}>
+          <Grid xs={2} sx={{ display: { xs: "flex", sm: "none" } }}>
+            <IconButton sx={{ color: "white", marginLeft: "15px" }}>
+              <SearchIcon />
+            </IconButton>
+          </Grid>
+
+          <Grid
+            item
+            sm={4}
+            md={3}
+            lg={2}
+            xl={2.15}
+            sx={{ display: { xs: "none", sm: "flex" } }}
+          >
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -116,43 +134,110 @@ const Navbar = () => {
               ></StyledInputBase>
             </Search>
           </Grid>
-          <Grid item xs={1.95}></Grid>
-          <Grid item xs={4}>
+
+          <Grid item lg={0.5} xl={1.95}></Grid>
+
+          <Grid
+            item
+            xs={12}
+            lg={4}
+            xl={1.50}
+            sx={{ display: "flex", justifyContent: "space-around" }}
+          >
             <IconButton
-              sx={{ marginRight: "60px", cursor: "pointer", color: "white", marginTop:"10px" }}
+              sx={{
+                marginRight: { lg: "10px", xl: "80px" },
+                cursor: "pointer",
+                color: "white",
+                // marginTop: { xl: "10px" },
+              }}
             >
               <HomeIcon />
             </IconButton>
             <IconButton
-              sx={{ marginRight: "60px", cursor: "pointer", color: "white", marginTop:"10px" }}
+              sx={{
+                marginRight: { lg: "10px", xl: "80px" },
+                cursor: "pointer",
+                color: "white",
+              }}
             >
               <GroupsIcon />
             </IconButton>
             <IconButton
-              sx={{ marginRight: "60px", cursor: "pointer", color: "white", marginTop:"10px" }}
+              sx={{
+                marginRight: { lg: "20px", xl: "80px" },
+                cursor: "pointer",
+                color: "white",
+              }}
             >
               <AccountCircleIcon />
             </IconButton>
-          </Grid>
-          <Grid item xs={1.65}></Grid>
-          <Grid item xs={1}>
-            {/* button Links */}
+
+            {/* only for screen less than lg */}
             <Badge
-              sx={{ marginTop: "16px", marginLeft:"35px" , marginRight: "25px", cursor: "pointer" }}
+              sx={{
+                marginTop: { xs: "6px"},
+                cursor: "pointer",
+                display: { xs: "flex", lg: "none" },
+              }}
               badgeContent={1}
               color="secondary"
             >
               <NotificationsIcon />
             </Badge>
             <Badge
-              sx={{ marginTop: "16px", cursor: "pointer" }}
+              sx={{
+                marginTop: { xs: "6px"},
+                cursor: "pointer",
+                display: { xs: "flex", lg: "none" },
+              }}
               id="drop-down-badge"
               aria-controls={open ? "drop-down-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
               onClick={handleClick}
             >
-              <ArrowDropDownCircleIcon />
+              <MenuSharpIcon sx={{ display: { xs: "flex", lg: "none" } }} />
+            </Badge>
+          </Grid>
+
+          {/* for large screens icons */}
+
+          <Grid item lg={1} xl={3}></Grid>
+          {/* xs={4} */}
+          <Grid
+            item
+            lg={2}
+            xl={2}
+            sx={{ display: { xs: "none", lg: "flex" }, justifyContent: "end" }}
+          >
+            {/* button Links */}
+            <Badge
+              sx={{
+                marginTop: {lg: "20px", xl: "18px" },
+                // marginLeft: { lg:"35px" ,xl:"35px" },
+                marginRight: { lg: "28px" },
+                cursor: "pointer",
+              }}
+              badgeContent={1}
+              color="secondary"
+            >
+              <NotificationsIcon />
+            </Badge>
+            <Badge
+              sx={{
+                marginTop: {  lg: "20px", xl: "18px" },
+                cursor: "pointer",
+              }}
+              id="drop-down-badge"
+              aria-controls={open ? "drop-down-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            >
+              <ArrowDropDownCircleIcon
+                sx={{ display: { xs: "none", lg: "flex" } }}
+              />
             </Badge>
             {/* dropdown list */}
             <Menu

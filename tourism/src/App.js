@@ -9,10 +9,12 @@ import Profile from "./Components/Pages/Profile";
 import Settings from "./Components/Pages/Settings";
 import Travelinfo from "./Components/Pages/Travelinfo";
 import Navbar from "./Components/miniComponents/Navbar";
+// import { ThemeProvider } from "@mui/private-theming";
+// import theme from "./Components/Breakpoints";
 function App() {
   return (
     <div>
-      <Navbar />
+        <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
@@ -20,7 +22,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
-        <Route path="/travelinfo" element={< Travelinfo />}></Route>
+        <Route path="/travelinfo" element={<Travelinfo />}></Route>
       </Routes>
     </div>
   );
