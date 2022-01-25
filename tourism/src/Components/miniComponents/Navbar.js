@@ -151,7 +151,7 @@ const Navbar = () => {
                   marginRight: { lg: "10px", xl: "80px" },
                   cursor: "pointer",
                   color: "white",
-                  marginTop: { xl: "10px" },
+                  marginTop: { lg: "10px" },
                 }}
               >
                 <HomeIcon />
@@ -165,7 +165,7 @@ const Navbar = () => {
                   marginRight: { lg: "10px", xl: "80px" },
                   cursor: "pointer",
                   color: "white",
-                  marginTop: { xl: "10px" },
+                  marginTop: { lg: "10px" },
                 }}
               >
                 <GroupsIcon />
@@ -179,7 +179,7 @@ const Navbar = () => {
                   marginRight: { lg: "20px", xl: "80px" },
                   cursor: "pointer",
                   color: "white",
-                  marginTop: { xl: "10px" },
+                  marginTop: { lg: "10px" },
                 }}
               >
                 <AccountCircleIcon />
