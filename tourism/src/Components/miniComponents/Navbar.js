@@ -141,42 +141,56 @@ const Navbar = () => {
             item
             xs={12}
             lg={4}
-            xl={1.50}
+            xl={1.5}
             sx={{ display: "flex", justifyContent: "space-around" }}
           >
-            <IconButton
-              sx={{
-                marginRight: { lg: "10px", xl: "80px" },
-                cursor: "pointer",
-                color: "white",
-                // marginTop: { xl: "10px" },
-              }}
-            >
-              <HomeIcon />
-            </IconButton>
-            <IconButton
-              sx={{
-                marginRight: { lg: "10px", xl: "80px" },
-                cursor: "pointer",
-                color: "white",
-              }}
-            >
-              <GroupsIcon />
-            </IconButton>
-            <IconButton
-              sx={{
-                marginRight: { lg: "20px", xl: "80px" },
-                cursor: "pointer",
-                color: "white",
-              }}
-            >
-              <AccountCircleIcon />
-            </IconButton>
+            {/* home page */}
+            <Link to="/">
+              <IconButton
+                sx={{
+                  marginRight: { lg: "10px", xl: "80px" },
+                  cursor: "pointer",
+                  color: "white",
+                  marginTop: { xl: "10px" },
+                }}
+              >
+                <HomeIcon />
+              </IconButton>
+            </Link>
+
+            {/* Community page/dashboard */}
+            <Link to="/dashboard">
+              <IconButton
+                sx={{
+                  marginRight: { lg: "10px", xl: "80px" },
+                  cursor: "pointer",
+                  color: "white",
+                  marginTop: { xl: "10px" },
+                }}
+              >
+                <GroupsIcon />
+              </IconButton>
+            </Link>
+
+            {/* profile page */}
+            <Link to="/profile">
+              <IconButton
+                sx={{
+                  marginRight: { lg: "20px", xl: "80px" },
+                  cursor: "pointer",
+                  color: "white",
+                  marginTop: { xl: "10px" },
+                }}
+              >
+                <AccountCircleIcon />
+              </IconButton>
+            </Link>
 
             {/* only for screen less than lg */}
+            {/* notifications */}
             <Badge
               sx={{
-                marginTop: { xs: "6px"},
+                marginTop: { xs: "6px" },
                 cursor: "pointer",
                 display: { xs: "flex", lg: "none" },
               }}
@@ -185,9 +199,10 @@ const Navbar = () => {
             >
               <NotificationsIcon />
             </Badge>
+            {/* dropdown/hamburger menu */}
             <Badge
               sx={{
-                marginTop: { xs: "6px"},
+                marginTop: { xs: "6px" },
                 cursor: "pointer",
                 display: { xs: "flex", lg: "none" },
               }}
@@ -204,7 +219,7 @@ const Navbar = () => {
           {/* for large screens icons */}
 
           <Grid item lg={1} xl={3}></Grid>
-          {/* xs={4} */}
+
           <Grid
             item
             lg={2}
@@ -212,9 +227,10 @@ const Navbar = () => {
             sx={{ display: { xs: "none", lg: "flex" }, justifyContent: "end" }}
           >
             {/* button Links */}
+            {/* notifications */}
             <Badge
               sx={{
-                marginTop: {lg: "20px", xl: "18px" },
+                marginTop: { lg: "20px", xl: "18px" },
                 // marginLeft: { lg:"35px" ,xl:"35px" },
                 marginRight: { lg: "28px" },
                 cursor: "pointer",
@@ -224,9 +240,10 @@ const Navbar = () => {
             >
               <NotificationsIcon />
             </Badge>
+            {/* dropdown/hamburger menu */}
             <Badge
               sx={{
-                marginTop: {  lg: "20px", xl: "18px" },
+                marginTop: { lg: "20px", xl: "18px" },
                 cursor: "pointer",
               }}
               id="drop-down-badge"
@@ -246,31 +263,44 @@ const Navbar = () => {
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
-              //   anchorOrigin={{ vertical: "top", horizontal: "left" }}
-              //   transformOrigin={{ vertical: "top", horizontal: "left" }}
+              // anchorOrigin={{ vertical: "top", horizontal: "left" }}
+              // transformOrigin={{ vertical: "top", horizontal: "left" }}
             >
               {/* before logging in */}
-              <MenuItem onClick={handleClose}>
-                <LoginIcon />
-                &nbsp; Log in
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <BadgeIcon />
-                &nbsp; Sign up
-              </MenuItem>
+              <Link to="/login" style={{textDecoration: "none", color: "#000000"}}>
+                <MenuItem onClick={handleClose}>
+                  <LoginIcon />
+                  &nbsp; Log in
+                </MenuItem>
+              </Link>
+
+              <Link to="/signup" style={{textDecoration: "none", color: "#000000"}}>
+                <MenuItem onClick={handleClose}>
+                  <BadgeIcon />
+                  &nbsp; Sign up
+                </MenuItem>
+              </Link>
               {/* After logging in  */}
-              <MenuItem onClick={handleClose}>
-                <TravelExploreIcon />
-                &nbsp; Travel info
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <SettingsIcon />
-                &nbsp; Settings
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <LogoutIcon />
-                &nbsp; Log out
-              </MenuItem>
+              <Link to="/travelinfo" style={{textDecoration: "none", color: "#000000"}}>
+                <MenuItem onClick={handleClose}>
+                  <TravelExploreIcon />
+                  &nbsp; Travel info
+                </MenuItem>
+              </Link>
+
+              <Link to="/settings" style={{textDecoration: "none", color: "#000000"}}>
+                <MenuItem onClick={handleClose}>
+                  <SettingsIcon />
+                  &nbsp; Settings
+                </MenuItem>
+              </Link>
+
+              <Link to="/login" style={{textDecoration: "none", color: "#000000"}}>
+                <MenuItem onClick={handleClose}>
+                  <LogoutIcon />
+                  &nbsp; Log out
+                </MenuItem>
+              </Link>
             </Menu>
           </Grid>
         </Grid>
