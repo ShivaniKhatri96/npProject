@@ -7,5 +7,5 @@
 - Deployed using Firebase hosting
 - Information from: https://ntb.gov.np/
 (official website of Nepal Tourism board)
--Info about manang: https://www.insidehimalayas.com/why-you-need-visit-manang/
+- Info about manang: https://www.insidehimalayas.com/why-you-need-visit-manang/
 - Disclaimer: this is a personal project for building my portfolio. If you wish to travel to Nepal and want correct information, check the official link mentioned above!!
