@@ -5,4 +5,4 @@
 -Information from: https://ntb.gov.np/
 (official website of Nepal Tourism board)
 - Disclaimer: this is a personal project for building my portfolio. If you wish to travel to Nepal and want correct information, check the official link mentioned above!!
--Color Palette: ![color palette](../Pictures/colorPalette.jpg)
+-Color Palette: ![color palette](./Components/Pictures/colorPalette.png)
