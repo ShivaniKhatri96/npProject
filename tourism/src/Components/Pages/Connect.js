@@ -10,7 +10,7 @@ import {
   Divr2,
   Btn,
   InputBox,
-} from "../miniComponents/CardThemeLS";
+} from "../../styles/ConnectStyle";
 import { InputLabel } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
