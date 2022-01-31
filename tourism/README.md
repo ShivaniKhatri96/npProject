@@ -9,3 +9,5 @@
 (official website of Nepal Tourism board)
 - Info about manang: https://www.insidehimalayas.com/why-you-need-visit-manang/
 - Disclaimer: this is a personal project for building my portfolio. If you wish to travel to Nepal and want correct information, check the official link mentioned above!!
+----------------------------
+- The project isn't finised yet. Deployed today just to learn how to "deploy"
