@@ -2,7 +2,7 @@
 - Country: Nepal
 - Free logo from: https://express.adobe.com/express-apps/logo-maker/
 - pictures and videos from pexels https://www.pexels.com/
-- Color Palette: ![color palette](./tourism/src/Components/Pictures/colorPalette.png)
+- Color Palette: ![color palette](./src/Components/Pictures/colorPalette.png)
 - Firebase is used as Database
 - Deployed using Firebase hosting
 - Information from: https://ntb.gov.np/
