@@ -54,8 +54,6 @@ const Header = () => {
     width: "100%",
     [theme.breakpoints.up("xs")]: {
       margin: theme.spacing(1.5, 0, 1.5, 0),
-      // margin: theme.spacing(1, 2, 1, 0),
-      // marginLeft: theme.spacing(0),
       width: "auto",
     }
   }));
@@ -79,6 +77,7 @@ const Header = () => {
       width: "100%",
       [theme.breakpoints.up("lg")]: {
         width: "15ch",
+        // width: "35ch",
       },
       [theme.breakpoints.up("xl")]: {
         width: "35ch",
@@ -91,14 +90,14 @@ const Header = () => {
     <AppBar elevation={1} sx={{ backgroundColor: "#03588C" }}>
       <Toolbar>
         {/* spacing={1} */}
-        <Grid container >
+        <Grid container>
           <Grid item lg={0.5} xl={0.5} />
-          <Grid item xs={8} sm={4} md={9} lg={2.5} xl={2.5} order={1}>
+          <Grid item xs={8} sm={4} lg={2.5} xl={2.5} order={1}>
             {/* logo and search*/}
             <img
               src={require("../Pictures/logo.png")}
               height="60px"
-              // width="200px"
+              width="200px"
               alt="Logo of the website"
               style={{ cursor: "pointer" }}
               onClick={imgHandler}
@@ -106,10 +105,11 @@ const Header = () => {
           </Grid>
 
           <Grid
+          item
             xs={3}
-            sm={3}
+            sm={4}
             sx={{
-              display: { xs: "flex", md: "none" },
+              display: { xs: "flex", lg: "none" },
               alignItems: "center",
               justifyContent: "end",
             }}
@@ -143,7 +143,7 @@ const Header = () => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               transformOrigin={{ vertical: "top", horizontal: "right" }}
-              sx={{ display: { xs: "flex", md: "none" } }}
+              sx={{ display: { xs: "flex", lg: "none" } }}
             >
               {!isLoggedIn && (
                 <Link
@@ -256,13 +256,12 @@ const Header = () => {
               )}
             </Menu>
           </Grid>
-          <Grid item lg={1.5} xl={1.5} />
+          <Grid item  lg={1.5} xl={1.5} />
           <Grid
             item
             xs={12}
-            sm={5}
-            md={3}
-            lg={2}
+            sm={4}
+            lg={3}
             xl={3}
             sx={{
               display: "flex" ,
@@ -284,12 +283,13 @@ const Header = () => {
             <Grid
               item
               xs={12}
-              lg={4}
+              lg={3.5}
               xl={3.5}
               sx={{
-                display: { xs: "none", md: "flex" },
+                display: { xs: "none", lg: "flex" },
                 justifyContent: "end",
               }}
+              order={{lg:3}}
             >
               {/* before logging in */}
               {!isLoggedIn && (
@@ -312,16 +312,17 @@ const Header = () => {
             </Grid>
           )}
           <Grid item lg={0.5} xl={0.5} />
-          {/* above xs screens */}
+          {/* from large screens */}
           <Grid
             item
             xs={12}
-            lg={4.5}
+            lg={3.5}
             xl={3.5}
             sx={{
-              display: { xs: "none", sm: "flex" },
+              display: { xs: "none", lg: "flex" },
               justifyContent: "space-around",
             }}
+            order={{lg:3}}
             // sx={{ display: "flex", justifyContent: "space-around" }}
           >
             {/* profile page */}
