@@ -15,6 +15,7 @@ import Bhat from "../Pictures/food/bhat.jpg";
 import Quati from "../Pictures/food/quati.jpg";
 import Samosa from "../Pictures/food/samosa.jpg";
 import Liquor from "../Pictures/food/liquor.jpg";
+import Momo from "../Pictures/food/momo.jpg";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
 
@@ -22,11 +23,15 @@ const Food = () => {
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
   return (
-    <Grid container spacing={3} sx={{ marginTop: "10px", marginBottom:"20px" }}>
+    <Grid
+      container
+      spacing={3}
+      sx={{ marginTop: "10px", marginBottom: "20px" }}
+    >
       <Grid item xs={1} />
       <Grid item xs={10}>
         <Typography className="heading" variant="h4" component="div">
-         Food & Culinary
+          Food & Culinary
         </Typography>
       </Grid>
       <Grid item xs={1} />
@@ -41,12 +46,13 @@ const Food = () => {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-            Bhat Tarkari
+              Dal Bhat Tarkari
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              There are countless ways to see mountain views right from the time
-              you fly into Kathmandu whether it is from your window on a plane ,
-              from the airport, on a trek or just driving somewhere
+              The meal is comprised of rice and vegetable soup or it is
+              comprised of rice, dal, vegetables with achar (sauce or dip). Dal
+              may represent black, red, yellow, green or mixed lentil soup
+              depending on the season
             </Typography>
           </CardContent>
           <CardActions>
@@ -61,20 +67,16 @@ const Food = () => {
       </Grid>
       <Grid item xs={2.5}>
         <Card>
-          <CardMedia
-            component="img"
-            alt="Quati"
-            height="220"
-            image={Quati}
-          />
+          <CardMedia component="img" alt="Quati" height="220" image={Quati} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               Quati
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Large swathes of jungles are being protected as national parks and
-              reserves which makes it possible for tourists to view wildlife
-              whether it be on elephant back or a jeep safari
+              Quanti soup consists of nine different types of sprouted beans
+              rich in vitamins and proteins. This dish also symbolizes a
+              specific festival in Nepal called Janai Purnima (full moon
+              festival, August)
             </Typography>
           </CardContent>
           <CardActions>
@@ -89,12 +91,7 @@ const Food = () => {
       </Grid>
       <Grid item xs={2.5}>
         <Card>
-          <CardMedia
-            component="img"
-            alt="Samosa"
-            height="220"
-            image={Samosa}
-          />
+          <CardMedia component="img" alt="Samosa" height="220" image={Samosa} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               Samosa
@@ -117,20 +114,15 @@ const Food = () => {
       </Grid>
       <Grid item xs={2.5}>
         <Card>
-          <CardMedia
-            component="img"
-            alt="Liquor"
-            height="220"
-            image={Liquor}
-          />
+          <CardMedia component="img" alt="Momo" height="220" image={Momo} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-             Liquors of Nepal
+              Momo
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Enjoy the thrills of paragliding over spectacular landscapes
-              taking in unbelievable views of the Himalayan mountains, pristine
-              lakes and verdant valleys like nowhere else on earth
+              Momo is prepared using minced chicken, mutton, grated paneer,
+              cheese or vegetables. While the momos are mainly steamed, they are
+              also fried or eaten with soup
             </Typography>
           </CardContent>
           <CardActions>

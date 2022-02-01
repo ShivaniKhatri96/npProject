@@ -44,9 +44,9 @@ const Festivals = () => {
               Dashain
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              There are countless ways to see mountain views right from the time
-              you fly into Kathmandu whether it is from your window on a plane ,
-              from the airport, on a trek or just driving somewhere
+              Dashain is the longest Hindu festival in Nepal, celebrated with
+              prayers and offerings to Goddess Durga, which is also a time for
+              family reunions, exchange of gifts and blessings
             </Typography>
           </CardContent>
           <CardActions>
@@ -61,20 +61,15 @@ const Festivals = () => {
       </Grid>
       <Grid item xs={2.5}>
         <Card>
-          <CardMedia
-            component="img"
-            alt="Lights"
-            height="220"
-            image={Tihar}
-          />
+          <CardMedia component="img" alt="Lights" height="220" image={Tihar} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               Tihar
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Large swathes of jungles are being protected as national parks and
-              reserves which makes it possible for tourists to view wildlife
-              whether it be on elephant back or a jeep safari
+              The five-day festival of lights, known as Tihar honors Yama, the
+              God of Death, meanwhile the worship of Laxmi, the Goddess of
+              Wealth dominates the festivities
             </Typography>
           </CardContent>
           <CardActions>
@@ -100,9 +95,9 @@ const Festivals = () => {
               Shivaratri
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              A wanderer’s paradise Nepal has plenty of options for both
-              professional and amateur hikers. The Kathmandu Valley alone has
-              over 50 hiking trails ranging from easy to difficult
+              Travelers are highly recommended to visit Pashupatinath Temple
+              during Shivaratri as thousands of hindu devotees from around the
+              world come here to worship Lord Shiva
             </Typography>
           </CardContent>
           <CardActions>
@@ -117,20 +112,16 @@ const Festivals = () => {
       </Grid>
       <Grid item xs={2.5}>
         <Card>
-          <CardMedia
-            component="img"
-            alt="colors"
-            height="220"
-            image={Holi}
-          />
+          <CardMedia component="img" alt="colors" height="220" image={Holi} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               Holi
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Enjoy the thrills of paragliding over spectacular landscapes
-              taking in unbelievable views of the Himalayan mountains, pristine
-              lakes and verdant valleys like nowhere else on earth
+              Holi is a festival of colors, indicating the
+              end of the cold winter nights and the arrival of the beautiful
+              spring season, where people apply colors and splash
+              colourful water at one another
             </Typography>
           </CardContent>
           <CardActions>
