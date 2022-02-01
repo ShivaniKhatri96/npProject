@@ -1,7 +1,6 @@
 import {
   AppBar,
   Toolbar,
-  IconButton,
   Badge,
   MenuItem,
   Menu,
@@ -11,7 +10,6 @@ import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 import SearchIcon from "@mui/icons-material/Search";
@@ -25,7 +23,6 @@ import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
-import Button from "@mui/material/Button";
 const Header = () => {
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
@@ -55,7 +52,7 @@ const Header = () => {
     [theme.breakpoints.up("xs")]: {
       margin: theme.spacing(1.5, 0, 1.5, 0),
       width: "auto",
-    }
+    },
   }));
   const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 4),
@@ -76,8 +73,7 @@ const Header = () => {
       transition: theme.transitions.create("width"),
       width: "100%",
       [theme.breakpoints.up("lg")]: {
-        width: "15ch",
-        // width: "35ch",
+        width: "25ch",
       },
       [theme.breakpoints.up("xl")]: {
         width: "35ch",
@@ -89,11 +85,10 @@ const Header = () => {
   return (
     <AppBar elevation={1} sx={{ backgroundColor: "#03588C" }}>
       <Toolbar>
-        {/* spacing={1} */}
         <Grid container>
-          <Grid item lg={0.5} xl={0.5} />
-          <Grid item xs={8} sm={4} lg={2.5} xl={2.5} order={1}>
-            {/* logo and search*/}
+          <Grid item lg={0.5} />
+          <Grid item xs={8} sm={4} lg={2} xl={3.5} order={{ xs: 1 }}>
+            {/* logo */}
             <img
               src={require("../Pictures/logo.png")}
               height="60px"
@@ -103,9 +98,9 @@ const Header = () => {
               onClick={imgHandler}
             />
           </Grid>
-
+          {/* search: for screens including md */}
           <Grid
-          item
+            item
             xs={3}
             sm={4}
             sx={{
@@ -113,9 +108,9 @@ const Header = () => {
               alignItems: "center",
               justifyContent: "end",
             }}
-            order={{xs:2, sm:3}}
+            order={{ xs: 2, sm: 3 }}
           >
-            {/* dropdown hamburgermenu */}
+            {/* dropdown hamburgermenu: for for screens including md */}
 
             <Badge
               sx={{
@@ -127,14 +122,11 @@ const Header = () => {
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
               onClick={handleClick}
-              // order={{xs:2,sm:3}}
             >
               <MenuSharpIcon />
             </Badge>
 
             {/* dropdown list */}
-            {/* before logging in */}
-
             <Menu
               id="drop-down-badge"
               aria-labelledby="drop-down-badge"
@@ -145,6 +137,7 @@ const Header = () => {
               transformOrigin={{ vertical: "top", horizontal: "right" }}
               sx={{ display: { xs: "flex", lg: "none" } }}
             >
+              {/* before logging in */}
               {!isLoggedIn && (
                 <Link
                   to="/connect"
@@ -160,6 +153,8 @@ const Header = () => {
                   </MenuItem>
                 </Link>
               )}
+              {/* after logging in */}
+              {/* profile */}
               {isLoggedIn && (
                 <Link
                   to="/profile"
@@ -175,6 +170,7 @@ const Header = () => {
                   </MenuItem>
                 </Link>
               )}
+              {/* community page */}
               {isLoggedIn && (
                 <Link
                   to="/dashboard"
@@ -190,6 +186,7 @@ const Header = () => {
                   </MenuItem>
                 </Link>
               )}
+              {/* travel info */}
               {isLoggedIn && (
                 <Link
                   to="/travelinfo"
@@ -205,6 +202,7 @@ const Header = () => {
                   </MenuItem>
                 </Link>
               )}
+              {/* notifications */}
               {isLoggedIn && (
                 <Link
                   to="#"
@@ -228,6 +226,7 @@ const Header = () => {
                   </MenuItem>
                 </Link>
               )}
+              {/* settings */}
               {isLoggedIn && (
                 <Link
                   to="/settings"
@@ -243,6 +242,7 @@ const Header = () => {
                   </MenuItem>
                 </Link>
               )}
+              {/* logout */}
               {isLoggedIn && (
                 <MenuItem
                   onClick={() => {
@@ -256,18 +256,18 @@ const Header = () => {
               )}
             </Menu>
           </Grid>
-          <Grid item  lg={1.5} xl={1.5} />
+          {/* search bar: for screens lg and xl */}
           <Grid
             item
             xs={12}
             sm={4}
-            lg={3}
-            xl={3}
+            lg={4}
+            xl={4}
             sx={{
-              display: "flex" ,
-              justifyContent: "center",
+              display: "flex",
+              justifyContent: { xs: "center", lg: "start", xl: "center" },
             }}
-            order={{xs:3, sm:2}}
+            order={{ xs: 3, sm: 2 }}
           >
             <Search>
               <SearchIconWrapper>
@@ -278,20 +278,22 @@ const Header = () => {
                 inputProps={{ "aria-label": "search" }}
               ></StyledInputBase>
             </Search>
+
+            {/*connect button: for screens lg and xl */}
+            {/* before logging in */}
           </Grid>
           {!isLoggedIn && (
             <Grid
               item
               xs={12}
-              lg={3.5}
+              lg={5}
               xl={3.5}
               sx={{
                 display: { xs: "none", lg: "flex" },
                 justifyContent: "end",
               }}
-              order={{lg:3}}
+              order={{ lg: 3 }}
             >
-              {/* before logging in */}
               {!isLoggedIn && (
                 <Link
                   to="/connect"
@@ -311,19 +313,18 @@ const Header = () => {
               )}
             </Grid>
           )}
-          <Grid item lg={0.5} xl={0.5} />
-          {/* from large screens */}
+          {/*for screens lg and xl */}
+          {/* after logging in */}
           <Grid
             item
             xs={12}
-            lg={3.5}
+            lg={5}
             xl={3.5}
             sx={{
               display: { xs: "none", lg: "flex" },
               justifyContent: "space-around",
             }}
-            order={{lg:3}}
-            // sx={{ display: "flex", justifyContent: "space-around" }}
+            order={{ lg: 3 }}
           >
             {/* profile page */}
             {isLoggedIn && (
@@ -355,6 +356,7 @@ const Header = () => {
                 Community
               </Link>
             )}
+            {/* Travel details */}
             {isLoggedIn && (
               <Link
                 to="/travelinfo"
@@ -369,6 +371,7 @@ const Header = () => {
                 Travel Details
               </Link>
             )}
+            {/* Notifications */}
             {isLoggedIn && (
               <Badge
                 sx={{
@@ -381,7 +384,6 @@ const Header = () => {
                 <NotificationsIcon />
               </Badge>
             )}
-            {/* after logging in */}
             {/* dropdown */}
             {isLoggedIn && (
               <Badge
@@ -409,8 +411,9 @@ const Header = () => {
                 onClose={handleClose}
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 transformOrigin={{ vertical: "top", horizontal: "right" }}
-                sx={{ display: { xs: "none", md: "flex" } }}
+                sx={{ display: { xs: "none", lg: "flex" } }}
               >
+                {/* settings */}
                 <Link
                   to="/settings"
                   style={{ textDecoration: "none", color: "#000000" }}
@@ -420,6 +423,7 @@ const Header = () => {
                     &nbsp; Settings
                   </MenuItem>
                 </Link>
+                {/* logout */}
                 <MenuItem
                   onClick={() => {
                     handleClose();
@@ -432,7 +436,6 @@ const Header = () => {
               </Menu>
             )}
           </Grid>
-          <Grid item lg={0.5} xl={0.5} />
         </Grid>
       </Toolbar>
     </AppBar>
