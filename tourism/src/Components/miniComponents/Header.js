@@ -52,24 +52,12 @@ const Header = () => {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      margin: theme.spacing(1, 2, 1, 0),
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("xs")]: {
       margin: theme.spacing(1.5, 0, 1.5, 0),
-      marginLeft: theme.spacing(0),
       // margin: theme.spacing(1, 2, 1, 0),
-      // marginLeft: theme.spacing(1),
+      // marginLeft: theme.spacing(0),
       width: "auto",
-    },
-    [theme.breakpoints.up("xl")]: {
-      margin: theme.spacing(1.5, 0, 1.5, 0),
-      marginLeft: theme.spacing(0),
-      // marginLeft: theme.spacing(3),
-      width: "auto",
-    },
+    }
   }));
   const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 4),
@@ -102,9 +90,10 @@ const Header = () => {
   return (
     <AppBar elevation={1} sx={{ backgroundColor: "#03588C" }}>
       <Toolbar>
-        <Grid container spacing={1}>
+        {/* spacing={1} */}
+        <Grid container >
           <Grid item lg={0.5} xl={0.5} />
-          <Grid item xs={8} sm={8} md={9} lg={2.5} xl={2.5}>
+          <Grid item xs={8} sm={4} md={9} lg={2.5} xl={2.5} order={1}>
             {/* logo and search*/}
             <img
               src={require("../Pictures/logo.png")}
@@ -118,11 +107,13 @@ const Header = () => {
 
           <Grid
             xs={3}
+            sm={3}
             sx={{
-              display: { xs: "flex", sm: "none" },
+              display: { xs: "flex", md: "none" },
               alignItems: "center",
               justifyContent: "end",
             }}
+            order={{xs:2, sm:3}}
           >
             {/* dropdown hamburgermenu */}
 
@@ -136,6 +127,7 @@ const Header = () => {
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
               onClick={handleClick}
+              // order={{xs:2,sm:3}}
             >
               <MenuSharpIcon />
             </Badge>
@@ -151,7 +143,7 @@ const Header = () => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               transformOrigin={{ vertical: "top", horizontal: "right" }}
-              sx={{ display: { xs: "flex", sm: "none" } }}
+              sx={{ display: { xs: "flex", md: "none" } }}
             >
               {!isLoggedIn && (
                 <Link
@@ -264,31 +256,19 @@ const Header = () => {
               )}
             </Menu>
           </Grid>
-          <Grid xs={12} sx={{ display: { xs: "flex", sm: "none" } }}>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search..."
-                inputProps={{ "aria-label": "search" }}
-              ></StyledInputBase>
-            </Search>
-            {/* <IconButton sx={{ color: "white", marginLeft: "15px" }}>
-              <SearchIcon />
-            </IconButton> */}
-          </Grid>
           <Grid item lg={1.5} xl={1.5} />
           <Grid
             item
-            sm={4}
+            xs={12}
+            sm={5}
             md={3}
             lg={2}
             xl={3}
             sx={{
-              display: { xs: "none", sm: "flex" },
+              display: "flex" ,
               justifyContent: "center",
             }}
+            order={{xs:3, sm:2}}
           >
             <Search>
               <SearchIconWrapper>
@@ -307,7 +287,7 @@ const Header = () => {
               lg={4}
               xl={3.5}
               sx={{
-                display: { xs: "none", sm: "flex" },
+                display: { xs: "none", md: "flex" },
                 justifyContent: "end",
               }}
             >
@@ -428,7 +408,7 @@ const Header = () => {
                 onClose={handleClose}
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 transformOrigin={{ vertical: "top", horizontal: "right" }}
-                sx={{ display: { xs: "none", sm: "flex" } }}
+                sx={{ display: { xs: "none", md: "flex" } }}
               >
                 <Link
                   to="/settings"
