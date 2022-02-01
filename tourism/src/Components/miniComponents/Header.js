@@ -58,8 +58,10 @@ const Header = () => {
       width: "auto",
     },
     [theme.breakpoints.up("lg")]: {
-      margin: theme.spacing(1, 2, 1, 0),
-      marginLeft: theme.spacing(1),
+      margin: theme.spacing(1.5, 0, 1.5, 0),
+      marginLeft: theme.spacing(0),
+      // margin: theme.spacing(1, 2, 1, 0),
+      // marginLeft: theme.spacing(1),
       width: "auto",
     },
     [theme.breakpoints.up("xl")]: {
@@ -101,24 +103,182 @@ const Header = () => {
     <AppBar elevation={1} sx={{ backgroundColor: "#03588C" }}>
       <Toolbar>
         <Grid container spacing={1}>
-          <Grid item xl={0.5} />
-          <Grid item xs={10} sm={8} md={9} lg={2} xl={2.5}>
+          <Grid item lg={0.5} xl={0.5} />
+          <Grid item xs={8} sm={8} md={9} lg={2.5} xl={2.5}>
             {/* logo and search*/}
             <img
               src={require("../Pictures/logo.png")}
               height="60px"
-              width="200px"
+              // width="200px"
               alt="Logo of the website"
               style={{ cursor: "pointer" }}
               onClick={imgHandler}
             />
           </Grid>
-          <Grid xs={2} sx={{ display: { xs: "flex", sm: "none" } }}>
-            <IconButton sx={{ color: "white", marginLeft: "15px" }}>
-              <SearchIcon />
-            </IconButton>
+
+          <Grid
+            xs={3}
+            sx={{
+              display: { xs: "flex", sm: "none" },
+              alignItems: "center",
+              justifyContent: "end",
+            }}
+          >
+            {/* dropdown hamburgermenu */}
+
+            <Badge
+              sx={{
+                marginTop: { lg: "20px", xl: "18px" },
+                cursor: "pointer",
+              }}
+              id="drop-down-badge"
+              aria-controls={open ? "drop-down-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            >
+              <MenuSharpIcon />
+            </Badge>
+
+            {/* dropdown list */}
+            {/* before logging in */}
+
+            <Menu
+              id="drop-down-badge"
+              aria-labelledby="drop-down-badge"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
+              sx={{ display: { xs: "flex", sm: "none" } }}
+            >
+              {!isLoggedIn && (
+                <Link
+                  to="/connect"
+                  style={{
+                    textDecoration: "none",
+                    color: "#000000",
+                    cursor: "pointer",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <LoginIcon />
+                    &nbsp; Connect
+                  </MenuItem>
+                </Link>
+              )}
+              {isLoggedIn && (
+                <Link
+                  to="/profile"
+                  style={{
+                    textDecoration: "none",
+                    color: "#000000",
+                    cursor: "pointer",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <AccountCircleIcon />
+                    &nbsp; Profile
+                  </MenuItem>
+                </Link>
+              )}
+              {isLoggedIn && (
+                <Link
+                  to="/dashboard"
+                  style={{
+                    textDecoration: "none",
+                    color: "#000000",
+                    cursor: "pointer",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <GroupsIcon />
+                    &nbsp; Community
+                  </MenuItem>
+                </Link>
+              )}
+              {isLoggedIn && (
+                <Link
+                  to="/travelinfo"
+                  style={{
+                    textDecoration: "none",
+                    color: "#000000",
+                    cursor: "pointer",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <TravelExploreIcon />
+                    &nbsp; Travel Details
+                  </MenuItem>
+                </Link>
+              )}
+              {isLoggedIn && (
+                <Link
+                  to="#"
+                  style={{
+                    textDecoration: "none",
+                    color: "#000000",
+                    cursor: "pointer",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <Badge
+                      sx={{
+                        display: { xs: "flex", lg: "none" },
+                      }}
+                      // badgeContent={1}
+                      color="secondary"
+                    >
+                      <NotificationsIcon />
+                    </Badge>
+                    &nbsp; Notifications
+                  </MenuItem>
+                </Link>
+              )}
+              {isLoggedIn && (
+                <Link
+                  to="/settings"
+                  style={{
+                    textDecoration: "none",
+                    color: "#000000",
+                    cursor: "pointer",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <SettingsIcon />
+                    &nbsp; Settings
+                  </MenuItem>
+                </Link>
+              )}
+              {isLoggedIn && (
+                <MenuItem
+                  onClick={() => {
+                    handleClose();
+                    logoutHandler();
+                  }}
+                >
+                  <LogoutIcon />
+                  &nbsp; Log out
+                </MenuItem>
+              )}
+            </Menu>
           </Grid>
-          <Grid item lg={0.5} xl={1.5} />
+          <Grid xs={12} sx={{ display: { xs: "flex", sm: "none" } }}>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search..."
+                inputProps={{ "aria-label": "search" }}
+              ></StyledInputBase>
+            </Search>
+            {/* <IconButton sx={{ color: "white", marginLeft: "15px" }}>
+              <SearchIcon />
+            </IconButton> */}
+          </Grid>
+          <Grid item lg={1.5} xl={1.5} />
           <Grid
             item
             sm={4}
@@ -142,39 +302,47 @@ const Header = () => {
           </Grid>
           {!isLoggedIn && (
             <Grid
-            item
-            xs={12}
-            lg={4}
-            xl={3.5}
-           sx={{ display: "flex", justifyContent: "end" }}
-          >
-            {/* before logging in */}
-            {!isLoggedIn && (
-              <Link
-                to="/connect"
-                style={{
-                  textDecoration: "none",
-                  cursor: "pointer",
-                  color: "white",
-                  display: "flex",
-                  alignSelf: "center",
-                }}
-              >
-                <MenuItem>
-                  <LoginIcon />
-                  &nbsp; Connect
-                </MenuItem>
-              </Link>
-            )}
+              item
+              xs={12}
+              lg={4}
+              xl={3.5}
+              sx={{
+                display: { xs: "none", sm: "flex" },
+                justifyContent: "end",
+              }}
+            >
+              {/* before logging in */}
+              {!isLoggedIn && (
+                <Link
+                  to="/connect"
+                  style={{
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    color: "white",
+                    display: "flex",
+                    alignSelf: "center",
+                  }}
+                >
+                  <MenuItem>
+                    <LoginIcon />
+                    &nbsp; Connect
+                  </MenuItem>
+                </Link>
+              )}
             </Grid>
           )}
           <Grid item lg={0.5} xl={0.5} />
+          {/* above xs screens */}
           <Grid
             item
             xs={12}
-            lg={4}
+            lg={4.5}
             xl={3.5}
-           sx={{ display: "flex", justifyContent: "space-around" }}
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              justifyContent: "space-around",
+            }}
+            // sx={{ display: "flex", justifyContent: "space-around" }}
           >
             {/* profile page */}
             {isLoggedIn && (
@@ -220,20 +388,10 @@ const Header = () => {
                 Travel Details
               </Link>
             )}
-            {/* <Grid
-            item
-            lg={2}
-            xl={2}
-            sx={{ display: { xs: "none", lg: "flex" }, justifyContent: "end" }}
-          > */}
-            {/* button Links */}
-            {/* notifications */}
             {isLoggedIn && (
               <Badge
                 sx={{
                   marginTop: { lg: "20px", xl: "18px" },
-                  // marginLeft: { lg:"35px" ,xl:"35px" },
-                  // marginRight: { lg: "28px" },
                   cursor: "pointer",
                 }}
                 badgeContent={1}
@@ -242,7 +400,8 @@ const Header = () => {
                 <NotificationsIcon />
               </Badge>
             )}
-            {/* dropdown/hamburger menu */}
+            {/* after logging in */}
+            {/* dropdown */}
             {isLoggedIn && (
               <Badge
                 sx={{
@@ -255,13 +414,11 @@ const Header = () => {
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
               >
-                <ArrowDropDownCircleIcon
-                  sx={{ display: { xs: "none", lg: "flex" } }}
-                />
+                <ArrowDropDownCircleIcon />
               </Badge>
             )}
-            {/* dropdown list large screens*/}
-            {/* after logging in */}
+
+            {/* dropdown list */}
             {isLoggedIn && (
               <Menu
                 id="drop-down-badge"
@@ -271,6 +428,7 @@ const Header = () => {
                 onClose={handleClose}
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 transformOrigin={{ vertical: "top", horizontal: "right" }}
+                sx={{ display: { xs: "none", sm: "flex" } }}
               >
                 <Link
                   to="/settings"
@@ -292,43 +450,8 @@ const Header = () => {
                 </MenuItem>
               </Menu>
             )}
-            {/* </Grid> */}
-            {/* only for screen less than lg */}
-            {/* notifications */}
-            {isLoggedIn && (
-              <Badge
-                sx={{
-                  marginTop: { xs: "6px" },
-                  cursor: "pointer",
-                  display: { xs: "flex", lg: "none" },
-                }}
-                badgeContent={1}
-                color="secondary"
-              >
-                <NotificationsIcon />
-              </Badge>
-            )}
-
-            {/* dropdown/hamburger menu */}
-            <Badge
-              sx={{
-                marginTop: { xs: "6px" },
-                cursor: "pointer",
-                display: { xs: "flex", lg: "none" },
-              }}
-              id="drop-down-badge"
-              aria-controls={open ? "drop-down-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
-            >
-              <MenuSharpIcon sx={{ display: { xs: "flex", lg: "none" } }} />
-            </Badge>
           </Grid>
-          <Grid item xl={0.5} />
-          {/* for large screens icons */}
-
-          {/* <Grid item lg={1} xl={3}></Grid> */}
+          <Grid item lg={0.5} xl={0.5} />
         </Grid>
       </Toolbar>
     </AppBar>
