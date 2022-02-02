@@ -156,7 +156,7 @@ const Connect = () => {
           // md: "200px",
           lg: "24%",
           // lg: "300px",
-          xl: "30%",
+          xl: "31.25%",
           // xl: "600px",
         },
         backgroundColor: "#FFF9F9",
