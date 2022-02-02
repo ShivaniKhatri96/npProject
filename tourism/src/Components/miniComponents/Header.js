@@ -98,10 +98,10 @@ const Header = () => {
               onClick={imgHandler}
             />
           </Grid>
-          {/* search: for screens including md */}
+          {/* dropdown hamburgermenu: for for screens including md */}
           <Grid
             item
-            xs={3}
+            xs={4}
             sm={4}
             sx={{
               display: { xs: "flex", lg: "none" },
@@ -110,11 +110,9 @@ const Header = () => {
             }}
             order={{ xs: 2, sm: 3 }}
           >
-            {/* dropdown hamburgermenu: for for screens including md */}
-
             <Badge
               sx={{
-                marginTop: { lg: "20px", xl: "18px" },
+                // marginTop: { lg: "20px", xl: "18px" },
                 cursor: "pointer",
               }}
               id="drop-down-badge"
@@ -256,7 +254,7 @@ const Header = () => {
               )}
             </Menu>
           </Grid>
-          {/* search bar: for screens lg and xl */}
+          {/* search bar: for all screens  */}
           <Grid
             item
             xs={12}

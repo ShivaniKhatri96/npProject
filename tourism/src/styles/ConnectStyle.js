@@ -5,18 +5,36 @@ import Divider from "@mui/material/Divider";
 import { Button, TextField } from "@mui/material";
 // { theme }
 
-export const ItemImage = styled(Paper)(() => ({
+export const ItemImage = styled(Paper)(({ theme }) => ({
   backgroundImage: `url(${Mountain})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  height: "30vh",
   opacity: "0.8",
+  [theme.breakpoints.up("xs")]: {
+    height: "175px",
+  },
+  [theme.breakpoints.up("sm")]: {
+    height: "40vh",
+  },
+  [theme.breakpoints.up("lg")]: {
+    height: "30vh",
+  },
+  
 }));
 
 export const ItemText = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   backgroundColor: "transparent",
-  padding: theme.spacing(14),
+  
+  [theme.breakpoints.up("xs")]: {
+   paddingTop: theme.spacing(10),
+  },
+  [theme.breakpoints.up("sm")]: {
+    paddingTop: theme.spacing(10),
+  },
+  [theme.breakpoints.up("lg")]: {
+    paddingTop: theme.spacing(14),
+  },
   //   height: "30vh",
   textAlign: "center",
   fontWeight: "bold",

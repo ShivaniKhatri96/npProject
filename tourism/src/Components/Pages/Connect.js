@@ -12,6 +12,7 @@ import {
   InputBox,
 } from "../../styles/ConnectStyle";
 import { InputLabel } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
 import AuthKey from "../store/authKey";
@@ -90,7 +91,7 @@ const Connect = () => {
         })
         .then((data) => {
           // console.log(data);
-           authCtx.login(data.idToken);
+          authCtx.login(data.idToken);
         })
         .catch((err) => {
           console.log(err);
@@ -137,8 +138,23 @@ const Connect = () => {
     <Card
       sx={{
         minWidth: 275,
-        marginY: { xs: "132px", sm: "150px", lg: "100px" },
-        marginX: { sm: "90px", md: "200px", lg: "300px", xl: "600px" },
+        marginTop: {
+          xs: "135px",
+          sm: "90px",
+          lg: "100px",
+        },
+        marginBottom: {
+          // xs: "20px",
+          sm: "30px",
+          lg: "100px",
+        },
+        marginX: {
+          xs: "auto",
+          sm: "80px",
+          md: "200px",
+          lg: "300px",
+          xl: "600px",
+        },
         backgroundColor: "#FFF9F9",
       }}
       elevation={3}
@@ -148,10 +164,27 @@ const Connect = () => {
           <Grid item xs={12}>
             <ItemImage>
               <ItemText elevation={0}>
-                <h1>Travel To Nepal</h1>
+                <Typography
+                  className="satisfy"
+                  sx={{
+                    fontSize: { xs: "2rem", sm: "2.5rem", xl: "3.8rem" },
+                    fontWeight: "bold",
+                  }}
+                >
+                  Travel To Nepal
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: { xs: "0.8rem", sm: "1rem", xl: "1.5rem" },
+                    fontWeight: "bold",
+                  }}
+                >
+                  Learn, share and travel
+                </Typography>
+                {/* <h1>Travel To Nepal</h1>
                 <span style={{ fontSize: "22px" }}>
                   Learn, share and travel
-                </span>
+                </span> */}
               </ItemText>
             </ItemImage>
           </Grid>
