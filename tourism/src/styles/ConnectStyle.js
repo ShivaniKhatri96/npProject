@@ -40,13 +40,36 @@ export const ItemText = styled(Paper)(({ theme }) => ({
   fontSize: "30px",
 }));
 
-export const Divr1 = styled(Divider)(() => ({
+export const Divr1 = styled(Divider)(({theme}) => ({
   background: "#0396A6",
-  height: "10px",
+  // height:"10px",
+  [theme.breakpoints.up("xs")]: {
+    height:"6px",
+  },
+  [theme.breakpoints.up("sm")]: {
+    height:"8px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    height:"9px",
+  },
+  [theme.breakpoints.up("xl")]: {
+    height:"10px",
+  },
 }));
-export const Divr2 = styled(Divider)(() => ({
+export const Divr2 = styled(Divider)(({theme}) => ({
   background: "#4a98a1",
-  height: "5px",
+  [theme.breakpoints.up("xs")]: {
+    height:"3.5px",
+  },
+  [theme.breakpoints.up("sm")]: {
+    height:"4.2px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    height:"4.5px",
+  },
+  [theme.breakpoints.up("xl")]: {
+    height:"5px",
+  },
   boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;"
 }));
 export const InputBox = styled(TextField)`

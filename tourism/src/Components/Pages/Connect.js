@@ -181,10 +181,6 @@ const Connect = () => {
                 >
                   Learn, share and travel
                 </Typography>
-                {/* <h1>Travel To Nepal</h1>
-                <span style={{ fontSize: "22px" }}>
-                  Learn, share and travel
-                </span> */}
               </ItemText>
             </ItemImage>
           </Grid>
@@ -196,7 +192,7 @@ const Connect = () => {
                 sx={{
                   color: "#8a9ea1",
                   fontWeight: "bold",
-                  fontSize: "18px",
+                  fontSize: {xs:"0.8rem",sm:"1rem", lg:"1.1rem", xl:"1.2rem"},
                   textAlign: "Center",
                   mx: "auto",
                   width: "100%",
@@ -214,7 +210,7 @@ const Connect = () => {
                 sx={{
                   color: "#0396A6",
                   fontWeight: "bold",
-                  fontSize: "20px",
+                  fontSize: {xs:"1rem",sm:"1.2rem",lg:"1.3rem", xl:"1.4rem"},
                   mx: "auto",
                   width: "100%",
                 }}
@@ -231,7 +227,7 @@ const Connect = () => {
                 sx={{
                   color: "#0396A6",
                   fontWeight: "bold",
-                  fontSize: "20px",
+                  fontSize: {xs:"1rem",sm:"1.2rem", lg:"1.3rem", xl:"1.4rem"},
                   mx: "auto",
                   width: "100%",
                 }}
@@ -248,7 +244,7 @@ const Connect = () => {
                 sx={{
                   color: "#8a9ea1",
                   fontWeight: "bold",
-                  fontSize: "18px",
+                  fontSize: {xs:"0.8rem",sm:"1rem", lg:"1.1rem", xl:"1.2rem"},
                   textAlign: "Center",
                   mx: "auto",
                   width: "100%",
