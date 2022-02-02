@@ -140,17 +140,17 @@ const Connect = () => {
         minWidth: 275,
         marginTop: {
           xs: "135px",
-          sm: "90px",
+          sm: "100px",
           lg: "100px",
         },
         marginBottom: {
           // xs: "20px",
           sm: "30px",
-          lg: "100px",
+          lg: "50px",
         },
         marginX: {
           xs: "auto",
-          sm: "80px",
+          sm: "130px",
           md: "200px",
           lg: "300px",
           xl: "600px",
@@ -167,7 +167,7 @@ const Connect = () => {
                 <Typography
                   className="satisfy"
                   sx={{
-                    fontSize: { xs: "2rem", sm: "2.5rem", xl: "3.8rem" },
+                    fontSize: { xs: "2rem", sm: "2.8rem", xl: "3.8rem" },
                     fontWeight: "bold",
                   }}
                 >
@@ -175,7 +175,7 @@ const Connect = () => {
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: { xs: "0.8rem", sm: "1rem", xl: "1.5rem" },
+                    fontSize: { xs: "0.85rem", sm: "1.2rem", xl: "1.5rem" },
                     fontWeight: "bold",
                   }}
                 >

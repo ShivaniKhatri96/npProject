@@ -86,7 +86,7 @@ const Header = () => {
     <AppBar elevation={1} sx={{ backgroundColor: "#03588C" }}>
       <Toolbar>
         <Grid container>
-          <Grid item lg={0.5} />
+          <Grid item sm={0.3}  lg={0.5} />
           <Grid item xs={11} sm={4} lg={2} xl={3.5} order={{ xs: 1 }}>
             {/* logo */}
             <img
@@ -102,11 +102,12 @@ const Header = () => {
           <Grid
             item
             xs={1}
-            sm={4}
+            sm={3}
             sx={{
               display: { xs: "flex", lg: "none" },
               alignItems: "center",
               justifyContent: {xs:"start",sm:"end"},
+              // marginLeft:{sm:"10px"}
             }}
             order={{ xs: 2, sm: 3 }}
           >

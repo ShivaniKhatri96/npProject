@@ -14,12 +14,11 @@ export const ItemImage = styled(Paper)(({ theme }) => ({
     height: "175px",
   },
   [theme.breakpoints.up("sm")]: {
-    height: "40vh",
+    height: "220px",
   },
   [theme.breakpoints.up("lg")]: {
     height: "30vh",
   },
-  
 }));
 
 export const ItemText = styled(Paper)(({ theme }) => ({
@@ -30,7 +29,7 @@ export const ItemText = styled(Paper)(({ theme }) => ({
    paddingTop: theme.spacing(10),
   },
   [theme.breakpoints.up("sm")]: {
-    paddingTop: theme.spacing(10),
+    paddingTop: theme.spacing(11),
   },
   [theme.breakpoints.up("lg")]: {
     paddingTop: theme.spacing(14),
