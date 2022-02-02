@@ -87,7 +87,7 @@ const Header = () => {
       <Toolbar>
         <Grid container>
           <Grid item lg={0.5} />
-          <Grid item xs={8} sm={4} lg={2} xl={3.5} order={{ xs: 1 }}>
+          <Grid item xs={11} sm={4} lg={2} xl={3.5} order={{ xs: 1 }}>
             {/* logo */}
             <img
               src={require("../Pictures/logo.png")}
@@ -101,12 +101,12 @@ const Header = () => {
           {/* dropdown hamburgermenu: for for screens including md */}
           <Grid
             item
-            xs={4}
+            xs={1}
             sm={4}
             sx={{
               display: { xs: "flex", lg: "none" },
               alignItems: "center",
-              justifyContent: "end",
+              justifyContent: {xs:"start",sm:"end"},
             }}
             order={{ xs: 2, sm: 3 }}
           >
