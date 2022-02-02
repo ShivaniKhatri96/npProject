@@ -150,10 +150,14 @@ const Connect = () => {
         },
         marginX: {
           xs: "auto",
-          sm: "130px",
-          md: "200px",
-          lg: "300px",
-          xl: "600px",
+          sm: "16%",
+          // sm: "130px",
+          md: "20%",
+          // md: "200px",
+          lg: "25%",
+          // lg: "300px",
+          xl: "32%",
+          // xl: "600px",
         },
         backgroundColor: "#FFF9F9",
       }}

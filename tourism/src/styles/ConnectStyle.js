@@ -17,7 +17,10 @@ export const ItemImage = styled(Paper)(({ theme }) => ({
     height: "220px",
   },
   [theme.breakpoints.up("lg")]: {
-    height: "30vh",
+    height: "250px",
+  },
+  [theme.breakpoints.up("xl")]: {
+    height: "275px",
   },
 }));
 
