@@ -18,8 +18,8 @@ const Home = () => {
 
       <Card
         sx={{
-          marginTop: { xs: "132px", sm: "135px", lg: "-20px" },
-          marginBottom: "30px",
+          marginTop: { xs: "110px", sm: "50px",md:"30px", lg: "25px",xl: "-20px" },
+          marginBottom: {sm:"30px",md:"20px",lg:"25px",xl:"25px"},
           // marginX: "100px",
           backgroundColor: "transparent",
         }}
@@ -27,8 +27,8 @@ const Home = () => {
       >
         <CardContent>
           <Grid container>
-            <Grid item xs={1} />
-            <Grid item xs={10}>
+            <Grid item xs={0.5} sm={1} />
+            <Grid item xs={11} sm={10}>
               {/* style={{width: "100%", height:"100%"}} */}
               <video
                 controls
@@ -46,7 +46,7 @@ const Home = () => {
                 Your browser does not support the video tag.
               </video>
             </Grid>
-            <Grid item xs={1} />
+            <Grid item  xs={0.5} sm={1} />
           </Grid>
         </CardContent>
       </Card>
