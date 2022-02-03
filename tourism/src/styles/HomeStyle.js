@@ -9,7 +9,7 @@ export const Welcome = styled(Paper)
   fontWeight: "bold",
   
   [theme.breakpoints.up("xs")]: {
-    fontSize:  "0.95rem",
+    fontSize:  "1.4rem",
     margin: "10px 0 10px 0",
   },
   [theme.breakpoints.up("sm")]: {

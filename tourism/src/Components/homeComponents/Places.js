@@ -31,7 +31,7 @@ const Places = () => {
       </Grid>
       <Grid item xs={1} />
       <Grid item xs={1} />
-      <Grid item xs={2.5}>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -44,7 +44,7 @@ const Places = () => {
               Kathmandu
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Kathmandu Valley comprises the three ancient cities of Kathmandu,
+              Kathmandu valley consists of three ancient cities: Kathmandu,
               Patan and Bhaktapur, which were once independent states ruled by
               the Malla kings from the 12th to the 18th centuries
             </Typography>
@@ -59,7 +59,9 @@ const Places = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -87,7 +89,9 @@ const Places = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",lg:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",lg:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -115,7 +119,9 @@ const Places = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -130,8 +136,7 @@ const Places = () => {
             <Typography variant="body2" color="text.secondary">
               Visit Nepal's deepest Lake, the Rara, where one can hike through
               lovely Juniper forests or camp by the sparkling waters of the lake
-              and enjoy the spectacular landscape that surrounds this pristine
-              lake
+              and enjoy the spectacular landscape 
             </Typography>
           </CardContent>
           <CardActions>
