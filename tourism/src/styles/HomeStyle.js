@@ -25,7 +25,7 @@ export const Welcome = styled(Paper)
     margin: "14px 0 14px 0",
   },
   [theme.breakpoints.up("xl")]: {
-    fontSize:  "2.7rem",
+    fontSize:  "2.6rem",
     // fontSize:  "2.8rem",
     margin: "15px 0 15px 0",
   },

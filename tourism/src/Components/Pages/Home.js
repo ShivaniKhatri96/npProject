@@ -18,7 +18,7 @@ const Home = () => {
 
       <Card
         sx={{
-          marginTop: { xs: "110px", sm: "50px",md:"30px", lg: "25px",xl: "-20px" },
+          marginTop: { xs: "110px", sm: "50px",md:"30px", lg: "25px",xl: "-16px" },
           marginBottom: {sm:"30px",md:"20px",lg:"25px",xl:"25px"},
           // marginX: "100px",
           backgroundColor: "transparent",
