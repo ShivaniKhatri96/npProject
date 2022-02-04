@@ -13,7 +13,7 @@ import AuthKey from "./Components/store/authKey";
 import {Navigate} from "react-router";
 function App() {
   const authCtx = useContext(AuthKey);
-  console.log(authCtx.isLoggedIn);
+  // console.log(authCtx.isLoggedIn);
   return (
     <div>
       <Header />
