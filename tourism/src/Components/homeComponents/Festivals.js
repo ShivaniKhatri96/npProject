@@ -31,7 +31,7 @@ const Festivals = () => {
       </Grid>
       <Grid item xs={1} />
       <Grid item xs={1} />
-      <Grid item xs={2.5}>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -59,7 +59,9 @@ const Festivals = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia component="img" alt="Lights" height="220" image={Tihar} />
           <CardContent>
@@ -82,7 +84,9 @@ const Festivals = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",lg:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",lg:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -110,7 +114,9 @@ const Festivals = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia component="img" alt="colors" height="220" image={Holi} />
           <CardContent>

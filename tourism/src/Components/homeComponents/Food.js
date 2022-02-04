@@ -36,7 +36,7 @@ const Food = () => {
       </Grid>
       <Grid item xs={1} />
       <Grid item xs={1} />
-      <Grid item xs={2.5}>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -65,7 +65,9 @@ const Food = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia component="img" alt="Quati" height="220" image={Quati} />
           <CardContent>
@@ -89,7 +91,9 @@ const Food = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",lg:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",lg:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia component="img" alt="Samosa" height="220" image={Samosa} />
           <CardContent>
@@ -112,7 +116,9 @@ const Food = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia component="img" alt="Momo" height="220" image={Momo} />
           <CardContent>

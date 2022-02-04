@@ -31,7 +31,7 @@ const Things = () => {
       </Grid>
       <Grid item xs={1} />
       <Grid item xs={1} />
-      <Grid item xs={2.5}>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -44,8 +44,8 @@ const Things = () => {
               Mountain Viewing
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              There are countless ways to see mountain views right from the time
-              you fly into Kathmandu whether it is from your window on a plane ,
+              There are countless ways to view mountains right from the time
+              you fly into Kathmandu: from your window on a plane,
               from the airport, on a trek or just driving somewhere
             </Typography>
           </CardContent>
@@ -59,7 +59,10 @@ const Things = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -87,7 +90,9 @@ const Things = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",lg:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",lg:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -101,8 +106,8 @@ const Things = () => {
             </Typography>
             <Typography variant="body2" color="text.secondary">
               A wanderer’s paradise Nepal has plenty of options for both
-              professional and amateur hikers. The Kathmandu Valley alone has
-              over 50 hiking trails ranging from easy to difficult
+              amateur and professional hikers. The Kathmandu valley alone has
+              over 50 hiking trails from easy to difficult
             </Typography>
           </CardContent>
           <CardActions>
@@ -115,7 +120,9 @@ const Things = () => {
           </CardActions>
         </Card>
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={1} sx={{display:{xs:"flex",sm:"none"}}}/>
+      <Grid item xs={10} sm={5} md={5} lg={2.5}>
         <Card>
           <CardMedia
             component="img"
@@ -130,7 +137,7 @@ const Things = () => {
             <Typography variant="body2" color="text.secondary">
               Enjoy the thrills of paragliding over spectacular landscapes
               taking in unbelievable views of the Himalayan mountains, pristine
-              lakes and verdant valleys like nowhere else on earth
+              lakes and valleys like nowhere else on earth
             </Typography>
           </CardContent>
           <CardActions>
