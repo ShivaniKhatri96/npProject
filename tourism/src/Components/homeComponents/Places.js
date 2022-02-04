@@ -17,12 +17,39 @@ import Manang from "../Pictures/places/manang.jpg";
 import Rara from "../Pictures/places/rara.jpg";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
+import { useState } from "react";
 
 const Places = () => {
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
+  // const [char, setChar] = useState(0);
+//   const charCount = (e) => {
+
+// setChar(e.target.value.length);
+//   }
+//   console.log(char);
+const[liked, setLiked]= useState(false);
+const like = (e) => {
+e.preventDefault();
+setLiked(!liked);
+}
+const[liked1, setLiked1]= useState(false);
+const like1 = (e) => {
+  e.preventDefault();
+  setLiked1(!liked1);
+  }
+  const[liked2, setLiked2]= useState(false);
+const like2 = (e) => {
+  e.preventDefault();
+  setLiked2(!liked2);
+  }
+  const[liked3, setLiked3]= useState(false);
+  const like3 = (e) => {
+    e.preventDefault();
+    setLiked3(!liked3);
+    }
   return (
-    <Grid container spacing={3} sx={{ marginTop: "10px" }}>
+    <Grid container spacing={3} sx={{ marginTop: "10px"}}>
       <Grid item xs={1} />
       <Grid item xs={10}>
         <Typography variant="h4" component="div" className="heading">
@@ -39,6 +66,7 @@ const Places = () => {
             height="220"
             image={Kathmandu}
           />
+          {/* height:"155px" */}
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               Kathmandu
@@ -51,8 +79,8 @@ const Places = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
+              <IconButton aria-label="add to favorites" onClick={like}>
+               {(liked === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
               </IconButton>
             )}
             <Button size="small">Learn more</Button>
@@ -81,8 +109,8 @@ const Places = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
+             <IconButton aria-label="add to favorites" onClick={like1}>
+               {(liked1 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
               </IconButton>
             )}
             <Button size="small">Learn More</Button>
@@ -111,9 +139,9 @@ const Places = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
-              </IconButton>
+              <IconButton aria-label="add to favorites" onClick={like2}>
+              {(liked2 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
+             </IconButton>
             )}
             <Button size="small">Learn More</Button>
           </CardActions>
@@ -141,8 +169,8 @@ const Places = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
+               <IconButton aria-label="add to favorites" onClick={like3}>
+               {(liked3 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
               </IconButton>
             )}
             <Button size="small">Learn More</Button>
