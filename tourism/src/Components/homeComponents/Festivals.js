@@ -17,10 +17,30 @@ import Shivaratri from "../Pictures/festivals/shivratri.jpg";
 import Holi from "../Pictures/festivals/holi.jpg";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
-
+import { useState } from "react";
 const Festivals = () => {
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
+  const[liked8, setLiked8]= useState(false);
+const like8 = (e) => {
+e.preventDefault();
+setLiked8(!liked8);
+}
+const[liked9, setLiked9]= useState(false);
+const like9 = (e) => {
+  e.preventDefault();
+  setLiked9(!liked9);
+  }
+  const[liked10, setLiked10]= useState(false);
+const like10 = (e) => {
+  e.preventDefault();
+  setLiked10(!liked10);
+  }
+  const[liked11, setLiked11]= useState(false);
+  const like11 = (e) => {
+    e.preventDefault();
+    setLiked11(!liked11);
+    }
   return (
     <Grid container spacing={3} sx={{ marginTop: "10px" }}>
       <Grid item xs={1} />
@@ -51,9 +71,9 @@ const Festivals = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
-              </IconButton>
+              <IconButton aria-label="add to favorites" onClick={like8}>
+              {(liked8 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
+             </IconButton>
             )}
             <Button size="small">Learn more</Button>
           </CardActions>
@@ -76,9 +96,9 @@ const Festivals = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
-              </IconButton>
+              <IconButton aria-label="add to favorites" onClick={like9}>
+              {(liked9 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
+             </IconButton>
             )}
             <Button size="small">Learn More</Button>
           </CardActions>
@@ -106,9 +126,9 @@ const Festivals = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
-              </IconButton>
+              <IconButton aria-label="add to favorites" onClick={like10}>
+              {(liked10 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
+             </IconButton>
             )}
             <Button size="small">Learn More</Button>
           </CardActions>
@@ -132,9 +152,9 @@ const Festivals = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
-              </IconButton>
+              <IconButton aria-label="add to favorites" onClick={like11}>
+              {(liked11 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
+             </IconButton>
             )}
             <Button size="small">Learn More</Button>
           </CardActions>

@@ -17,10 +17,30 @@ import Hiking from "../Pictures/things/hiking.jpg";
 import Paragliding from "../Pictures/things/paragliding.jpg";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
-
+import { useState } from "react";
 const Things = () => {
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
+  const[liked4, setLiked4]= useState(false);
+const like4 = (e) => {
+e.preventDefault();
+setLiked4(!liked4);
+}
+const[liked5, setLiked5]= useState(false);
+const like5 = (e) => {
+  e.preventDefault();
+  setLiked5(!liked5);
+  }
+  const[liked6, setLiked6]= useState(false);
+const like6 = (e) => {
+  e.preventDefault();
+  setLiked6(!liked6);
+  }
+  const[liked7, setLiked7]= useState(false);
+  const like7 = (e) => {
+    e.preventDefault();
+    setLiked7(!liked7);
+    }
   return (
     <Grid container spacing={3} sx={{ marginTop: "10px" }}>
       <Grid item xs={1} />
@@ -51,9 +71,9 @@ const Things = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
-              </IconButton>
+              <IconButton aria-label="add to favorites" onClick={like4}>
+              {(liked4 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
+             </IconButton>
             )}
             <Button size="small">Learn more</Button>
           </CardActions>
@@ -82,9 +102,9 @@ const Things = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
-              </IconButton>
+              <IconButton aria-label="add to favorites" onClick={like5}>
+              {(liked5 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
+             </IconButton>
             )}
             <Button size="small">Learn More</Button>
           </CardActions>
@@ -112,9 +132,9 @@ const Things = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
-              </IconButton>
+              <IconButton aria-label="add to favorites" onClick={like6}>
+              {(liked6 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
+             </IconButton>
             )}
             <Button size="small">Learn More</Button>
           </CardActions>
@@ -142,9 +162,9 @@ const Things = () => {
           </CardContent>
           <CardActions>
             {isLoggedIn && (
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderIcon />
-              </IconButton>
+              <IconButton aria-label="add to favorites" onClick={like7}>
+              {(liked7 === false) ? <FavoriteBorderIcon  /> : < FavoriteIcon color="secondary" />}
+             </IconButton>
             )}
             <Button size="small">Learn More</Button>
           </CardActions>
