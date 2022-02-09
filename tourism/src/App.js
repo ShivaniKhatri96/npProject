@@ -8,6 +8,7 @@ import Profile from "./Components/Pages/Profile";
 import Settings from "./Components/Pages/Settings";
 import Travelinfo from "./Components/Pages/Travelinfo";
 import Header from "./Components/miniComponents/Header";
+import Article from "./Components/Pages/Article";
 import { useContext } from "react";
 import AuthKey from "./Components/store/authKey";
 import {Navigate} from "react-router";
@@ -19,6 +20,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/article" element={<Article />}></Route>
         {!authCtx.isLoggedIn && (
         <Route path="/connect" element={<Connect />}></Route>
         )}

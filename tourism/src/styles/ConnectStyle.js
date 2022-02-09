@@ -1,12 +1,12 @@
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import Mountain from "../Components/Pictures/mountain.jpg";
+// import Mountain from "../Components/Pictures/mountain.jpg";
 import Divider from "@mui/material/Divider";
 import { Button, TextField } from "@mui/material";
 // { theme }
-
+const img = process.env.PUBLIC_URL + "/Pictures/mountain.jpg";
 export const ItemImage = styled(Paper)(({ theme }) => ({
-  backgroundImage: `url(${Mountain})`,
+  backgroundImage: `url(${img})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   opacity: "0.8",
