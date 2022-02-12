@@ -16,7 +16,7 @@ import Festivals from "../homeComponents/Festivals";
 import Food from "../homeComponents/Food";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useState, useEffect } from "react";
-import Data from "../../data.json";
+// import Data from "../../data.json";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Button from "@mui/material/Button";
@@ -25,7 +25,38 @@ import AuthKey from "../store/authKey";
 const Home = () => {
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
-  const [count, setCount] = useState(0);
+  const [articles, setArticles] = useState([]);
+  const [like, setLike] = useState(false);
+  useEffect(() => {
+    const url = "data/data.json";
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        // console.log(data);
+        setArticles(data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(articles);
+  const onHandleLiked = (idLiked) => {
+    // articles.map((article) => {return
+    //   article.find(art => art.id === idLiked);
+    // });
+    //  for (const obj of object) {
+    // for(const article of articles){
+    //   const found = article.find(article => article.id === idLiked);
+    //   console.log(found);
+    // }
+    //products.find(product => product.items.some(item => item.name === 'milk'));
+    articles.find((article) =>
+      article.content.some((item) => item.id === idLiked)
+    )
+    // console.log(found);
+  };
   // const [liked, setLiked] = useState(false);
   // const arr = [];
   // <li key={con.id}>{con.title}</li>;
@@ -133,119 +164,67 @@ const Home = () => {
           <DivrHome />
         </Grid>
         <Grid item xs={1} />
-        {/* <Grid item xs={12}>
-          {Data.map((post) => {
-            return (
-              <Welcome key={post.id}>
-                <h5>{post.title}</h5>
-                {post.content.map((con) => {
-                  return <li key={con.id}>{con.title}</li>;
-                })}
-              </ Welcome>
-            );
-          })}
-         </Grid> */}
       </Grid>
-
-      {Data.map((post) => {
+      {/* {Data.map((post) => { */}
+      {articles.map((post) => {
         return (
           <div key={post.id}>
-            <Grid container spacing={3} sx={{ marginTop: "10px" }}>
-              <Grid item xs={1} />
+            <Grid
+              container
+              spacing={3}
+              sx={{
+                marginY: "10px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <Grid item xs={10}>
                 <Typography className="heading" variant="h4" component="div">
                   {post.title}
                 </Typography>
               </Grid>
-              <Grid item xs={1} />
-              <Grid item xs={1} />
-
               {post.content.map((con) => {
                 const img = process.env.PUBLIC_URL + con.img;
-                // const count = 0;
-                // (count > 4) ?  setCount(prevState => (0)) :  setCount(prevState => (prevState + 1));
-                // console.log(count);
                 return (
-                  <>
-                  {/* sx={{display:"flex", justifyContent:"center"}} */}
-                    <Grid item xs={10} sm={5} lg={2.5} >
-                      <Card key={con.id}>
-                        <CardMedia
-                          component="img"
-                          title={con.title}
-                          height="220"
-                          image={img}
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="div">
-                            {con.name}
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            {con.content}
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          {isLoggedIn && (
-                            <IconButton
-                              aria-label="add to favorites"
-                              onClick={`like${con.id}`}
-                            >
-                              {`liked${con.id}` === false ? (
-                                <FavoriteBorderIcon />
-                              ) : (
-                                <FavoriteIcon color="secondary" />
-                              )}
-                            </IconButton>
-                          )}
-                          <Button size="small">Learn more</Button>
-                        </CardActions>
-                      </Card>
-                    </Grid>
-
-                    <Grid
-                      item
-                      xs={1}
-                      sx={{ display: { xs: "flex", sm: "none" } }}
-                    />
-                    <Grid
-                      item
-                      xs={1}
-                      sx={{ display: { xs: "flex", sm: "none" } }}
-                    />
-      
-                    {/* {con.id === 2 && (
-                      <>
-                        <Grid
-                          item
-                          sm={1}
-                          sx={{ display: { sm: "flex", lg: "none" } }}
-                        />
-                        <Grid
-                          item
-                          sm={1}
-                          sx={{ display: { sm: "flex", lg: "none" } }}
-                        />
-                      </>
-                    )} */}
-                  </>
+                  <Grid item xs={10} sm={5} lg={2.5} key={con.id}>
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        title={con.title}
+                        height="220"
+                        image={img}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {con.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {con.content}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        {isLoggedIn && (
+                          <IconButton
+                            aria-label="add to favorites"
+                            onClick={onHandleLiked(con.id)}
+                          >
+                            {like === false ? (
+                              <FavoriteBorderIcon />
+                            ) : (
+                              <FavoriteIcon color="secondary" />
+                            )}
+                          </IconButton>
+                        )}
+                        <Button size="small">Learn more</Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
                 );
-                // <li key={con.id}>{con.title}</li>;
               })}
-
-              {/* <Grid item sm={1} sx={{display:{sm:"flex",lg:"none"}}}/> */}
-
-              <Grid item xs={1} />
             </Grid>
           </div>
         );
       })}
-
-      {/* Places to go */}
-      {/* <Places />
-       <Things />
-      <Festivals />
-      <Food />
-       */}
     </div>
   );
 };
