@@ -1,7 +1,8 @@
+import Future from "../miniComponents/Future";
 const Travelinfo = () => {
     return (
         <div>
-            Travelinfo
+             <Future />
         </div>
     )
 }

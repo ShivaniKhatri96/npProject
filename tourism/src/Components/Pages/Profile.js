@@ -1,18 +1,14 @@
+import Future from "../miniComponents/Future";
+import Grid from "@mui/material/Grid";
+import {
+    Card,
+    CardMedia,
+    CardContent,
+    Typography
+  } from "@mui/material";
 const Profile = () => {
-    return (
-        <div>
-            Profile
-            <br />
-            Profile
-            <br />
-            Profile
-            <br />
-            Profile
-            <br />
-            Profile Profile
-            <br />
-            Profile
-        </div>
-    )
-}
+  return (
+     <Future />
+  );
+};
 export default Profile;

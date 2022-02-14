@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./styles/theme";
 import { AuthKeyProvider } from "./Components/store/authKey";
-// import reportWebVitals from './reportWebVitals';
+
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <AuthKeyProvider>
@@ -18,14 +18,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();

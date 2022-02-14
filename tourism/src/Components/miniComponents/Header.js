@@ -38,7 +38,8 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const imgHandler = () => {
+  const imgHandler = (e) => {
+    e.preventDefault();
     navigate("./home");
   };
   const Search = styled("div")(({ theme }) => ({
@@ -90,7 +91,7 @@ const Header = () => {
           <Grid item xs={11} sm={4} lg={2} xl={3.5} order={{ xs: 1 }}>
             {/* logo */}
             <img
-              src={require("../Pictures/logo.png")}
+              src={process.env.PUBLIC_URL+"/Pictures/logo.png"}
               height="60px"
               width="200px"
               alt="Logo of the website"

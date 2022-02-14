@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "title": "Places to go",
+    "content": [
+      {
+        "id": 11,
+        "name": "Kathmandu",
+        "img": "/Pictures/places/kathmandu.jpg",
+        "title": "Kathmandu",
+        "content": "Kathmandu valley consists of three ancient cities: Kathmandu, Patan and Bhaktapur, which were once independent states ruled by the Malla kings from the 12th to the 18th centuries",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 12,
+        "name": "Chitwan",
+        "img": "/Pictures/places/chitwan.jpg",
+        "title": "Chitwan",
+        "content": "Chitwan, the popular Inner Terai valley, lies between foothills of the Himalaya, the Mahabharat and Siwalik ranges which gets its name from Chitrasen, the Tharu King, who once ruled here",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 13,
+        "name": "Manang",
+        "img": "/Pictures/places/manang.jpg",
+        "title": "Manang",
+        "content": "Manang, one of the largest villages along the Annapurna Circuit, is a popular resting point for climbers acclimatizing before attempting the Thorong La Pass (5415 metres)",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 14,
+        "name": "Rara",
+        "img": "/Pictures/places/rara.jpg",
+        "title": "Rara",
+        "content": " Visit Nepal's deepest Lake, the Rara, where one can hike through lovely Juniper forests or camp by the sparkling waters of the lake and enjoy the spectacular landscape ",
+        "like": "",
+        "learnMore": ""
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Things to do",
+    "content": [
+      {
+        "id": 21,
+        "name": "Mountain viewing",
+        "img": "/Pictures/things/mountain.jpg",
+        "title": " Mountain Viewing",
+        "content": "There are countless ways to view mountains right from the time you fly into Kathmandu: from your window on a plane, from the airport, on a trek or just driving somewhere",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 22,
+        "name": "Jungle discovery",
+        "img": "/Pictures/things/jungle.jpg",
+        "title": "Jungle",
+        "content": " Large swathes of jungles are being protected as national parks and reserves which makes it possible for tourists to view wildlife whether it be on elephant back or a jeep safari",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 23,
+        "name": "Hiking",
+        "img": "/Pictures/things/hiking.jpg",
+        "title": "Hiking",
+        "content": "A wanderer’s paradise Nepal has plenty of options for both amateur and professional hikers. The Kathmandu valley alone has over 50 hiking trails from easy to difficult",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 24,
+        "name": "Paragliding",
+        "img": "/Pictures/things/paragliding.jpg",
+        "title": "Paragliding",
+        "content": "Enjoy the thrills of paragliding over spectacular landscapes taking in unbelievable views of the Himalayan mountains, pristine lakes and valleys like nowhere else on earth",
+        "like": "",
+        "learnMore": ""
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Festivals & Events",
+    "content": [
+      {
+        "id": 31,
+        "name": "Dashain",
+        "img": "/Pictures/festivals/dashain.jpg",
+        "title": "Goddess Durga",
+        "content": " Dashain is the longest Hindu festival in Nepal, celebrated with prayers and offerings to Goddess Durga, which is also a time for family reunions, exchange of gifts and blessings",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 32,
+        "name": "Tihar",
+        "img": "/Pictures/festivals/tihar.jpg",
+        "title": "Tihar",
+        "content": "The five-day festival of lights, known as Tihar honors Yama, the God of Death, meanwhile the worship of Laxmi, the Goddess of Wealth dominates the festivities",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 33,
+        "name": "Shivaratri",
+        "img": "/Pictures/festivals/shivratri.jpg",
+        "title": "Statue of lord Shiva",
+        "content": "Travelers are highly recommended to visit Pashupatinath Temple during Shivaratri as thousands of hindu devotees from around the world come here to worship Lord Shiva",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 34,
+        "name": "Holi",
+        "img": "/Pictures/festivals/holi.jpg",
+        "title": "Holi",
+        "content": "Holi is a festival of colors, indicating the end of the cold winter nights and the arrival of the beautiful spring season, where people apply colors and splash colourful water at one another",
+        "like": "",
+        "learnMore": ""
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Food & Culinary",
+    "content": [
+      {
+        "id": 41,
+        "name": "Dal Bhat Tarkari",
+        "img": "/Pictures/food/bhat.jpg",
+        "title": "Dal Bhat Tarkari",
+        "content": "The meal is comprised of rice and vegetable soup or it is comprised of rice, dal, vegetables with achar (sauce or dip). Dal may represent black, red, yellow, green or mixed lentil soup depending on the season",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 42,
+        "name": "Quati",
+        "img": "/Pictures/food/quati.jpg",
+        "title": " Quati",
+        "content": "Quanti soup consists of nine different types of sprouted beans rich in vitamins and proteins. This dish also symbolizes a specific festival in Nepal called Janai Purnima (full moon festival, August)",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 43,
+        "name": "Samosa",
+        "img": "/Pictures/food/samosa.jpg",
+        "title": "Samosa",
+        "content": "A wanderer’s paradise Nepal has plenty of options for both professional and amateur hikers. The Kathmandu Valley alone has over 50 hiking trails ranging from easy to difficult",
+        "like": "",
+        "learnMore": ""
+      },
+      {
+        "id": 44,
+        "name": "Momo",
+        "img": "/Pictures/food/momo.jpg",
+        "title": "Momo",
+        "content": "Momo is prepared using minced chicken, mutton, grated paneer, cheese or vegetables. While the momos are mainly steamed, they are also fried or eaten with soup",
+        "like": "",
+        "learnMore": ""
+      }
+    ]
+  }
+]
