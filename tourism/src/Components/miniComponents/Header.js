@@ -38,7 +38,8 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const imgHandler = () => {
+  const imgHandler = (e) => {
+    e.preventDefault();
     navigate("./home");
   };
   const Search = styled("div")(({ theme }) => ({

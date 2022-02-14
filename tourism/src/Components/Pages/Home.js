@@ -26,14 +26,13 @@ const Home = () => {
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
   const [articles, setArticles] = useState([]);
-  const [like, setLike] = useState(false);
+  const [liked, setLiked] = useState([]);
   useEffect(() => {
     const url = "data/data.json";
     const fetchData = async () => {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        // console.log(data);
         setArticles(data);
       } catch (error) {
         console.log("error", error);
@@ -41,43 +40,21 @@ const Home = () => {
     };
     fetchData();
   }, []);
-  console.log(articles);
+
+  // console.log(articles);
+  // console.log(articles.map((article) => article.content));
+
   const onHandleLiked = (idLiked) => {
-    // articles.map((article) => {return
-    //   article.find(art => art.id === idLiked);
-    // });
-    //  for (const obj of object) {
-    // for(const article of articles){
-    //   const found = article.find(article => article.id === idLiked);
-    //   console.log(found);
-    // }
-    //products.find(product => product.items.some(item => item.name === 'milk'));
-    articles.find((article) =>
+    const findArticle = articles.find((article) =>
       article.content.some((item) => item.id === idLiked)
-    )
-    // console.log(found);
+    );
+    const found = findArticle.content.find((item) => item.id === idLiked);
+    const filtered = liked.filter((item) => item.id !== found.id);
+    liked.length === filtered.length
+      ? setLiked((prevState) => [...prevState, found])
+      : setLiked(filtered);
   };
-  // const [liked, setLiked] = useState(false);
-  // const arr = [];
-  // <li key={con.id}>{con.title}</li>;
-  // <span>{arr.push(`${con.id}`)}</span>
-  // Data.map((post) =>  post.content.map((con) =>
-
-  //        <>
-  //       const [`liked${con.id}`, `setLiked${con.id}`] = useState(false);
-  // const `like${con.id}` = () => {
-  //   `setLiked${con.id}`(!`liked${con.id}`)
-  // }
-
-  //        </>
-  //   )
-  // );
-  // arr.map((id) => )
-  // const [liked, setLiked] = useState(false);
-  // const like = (e) => {
-  //   e.preventDefault();
-  //   setLiked(!liked);
-  // };
+  console.log(liked);
   return (
     <div>
       <Card
@@ -206,12 +183,12 @@ const Home = () => {
                         {isLoggedIn && (
                           <IconButton
                             aria-label="add to favorites"
-                            onClick={onHandleLiked(con.id)}
+                            onClick={() => onHandleLiked(con.id)}
                           >
-                            {like === false ? (
-                              <FavoriteBorderIcon />
+                            {!!liked.find((item) => item.id === con.id ) ? (
+                               <FavoriteIcon color="secondary" />
                             ) : (
-                              <FavoriteIcon color="secondary" />
+                              <FavoriteBorderIcon />
                             )}
                           </IconButton>
                         )}
