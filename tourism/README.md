@@ -12,4 +12,7 @@
 - info about holi: https://www.altitudehimalaya.com/blog/holi-festival-in-nepal
 - Disclaimer: this is a personal project for building my portfolio. If you wish to travel to Nepal and want correct information, check the official link mentioned above!!
 ----------------------------
-- The project isn't finised yet. Deployed today just to learn how to "deploy"
+## Currently working on
+- Home page
+## Next 
+- Profile page
