@@ -85,7 +85,8 @@ const Home = () => {
           <Grid item xs={12}>
             <CardMedia
               component="video"
-              controls
+              //controls le sab screen maximize garne haru control dekhaucha
+              //controls
               loop
               autoPlay
               muted
@@ -106,7 +107,8 @@ const Home = () => {
             <Grid item xs={0.5} sm={1} />
             <Grid item xs={11} sm={10}>
               <video
-                controls
+              // //controls le sab screen maximize garne haru control dekhaucha
+               // controls
                 loop
                 autoPlay
                 muted

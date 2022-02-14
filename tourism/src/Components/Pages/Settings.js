@@ -1,7 +1,8 @@
+import Future from "../miniComponents/Future";
 const Settings = () => {
     return (
         <div>
-            Settings
+             <Future />
         </div>
     )
 }
