@@ -15,20 +15,25 @@ import Things from "../homeComponents/Things";
 import Festivals from "../homeComponents/Festivals";
 import Food from "../homeComponents/Food";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 // import Data from "../../data.json";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+ let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
   const [articles, setArticles] = useState([]);
   const [liked, setLiked] = useState([]);
+  const [learn, setLearn] = useState([]);
+  const arrLength = Object.keys(learn).length;
   useEffect(() => {
-    const url = "data/data.json";
+    // const url = "data/data.json";
+    const url = "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/cards.json"
     const fetchData = async () => {
       try {
         const response = await fetch(url);
@@ -54,7 +59,49 @@ const Home = () => {
       ? setLiked((prevState) => [...prevState, found])
       : setLiked(filtered);
   };
-  console.log(liked);
+  //console.log(liked);
+
+  const onHandleLearn = (idLearn) => {
+    // idLearn.preventDefault();
+    const findArticle = articles.find((article) =>
+    article.content.some((item) => item.id === idLearn)
+  );
+  const found = findArticle.content.find((item) => item.id === idLearn);
+    setLearn(found);
+    // navigate("/article");
+  }
+  //console.log(learn);
+  // console.log(Object.keys(learn).length);
+useEffect(() => {
+  const postData = async () => {
+    if(arrLength !== 0){
+      const res = await fetch(
+        "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",{
+          method: "PUT",
+          headers: {
+            "Content-Type":"application/json",
+          },
+          body:JSON.stringify({
+            learn
+          })
+        }
+      );
+      if(res){
+        console.log("Data stored");
+        setLearn([]);
+        navigate("/article");
+      }
+      else{
+        console.log("fix the issue!!");
+      }
+    }
+  }
+
+  postData()
+  .catch(console.error);
+ 
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [learn]);
   return (
     <div>
       <Card
@@ -194,7 +241,7 @@ const Home = () => {
                             )}
                           </IconButton>
                         )}
-                        <Button size="small">Learn more</Button>
+                        <Button size="small" onClick={() => onHandleLearn(con.id)}>Learn more</Button>
                       </CardActions>
                     </Card>
                   </Grid>
