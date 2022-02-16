@@ -24,7 +24,7 @@ import { useNavigate } from "react-router";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
 const Header = () => {
-  const [home, setHome]= useState(false);
+  //const [home, setHome]= useState(false);
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
@@ -41,34 +41,34 @@ const Header = () => {
   };
   const imgHandler = (e) => {
     e.preventDefault();
-    setHome(true);
-    //navigate("./home");
+    //setHome(true);
+    navigate("./home");
   };
   //console.log(home);
-  useEffect(() => {
-    const deleteData = async () => {
-     if(home === true){
-      const res = await fetch(
-        "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",{
-          method: "DELETE",
-          headers: {
-            "Content-Type":"application/json",
-          },
-        }
-      );
-      if(res){
-        console.log("Article shown is deleted");
-        setHome(false);
-        navigate("/home");
-      }
-      else{
-        console.log("fix the issue!!");
-      }
-     }
-    };
-    deleteData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [home]);
+  // useEffect(() => {
+  //   const deleteData = async () => {
+  //    if(home === true){
+  //     const res = await fetch(
+  //       "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",{
+  //         method: "DELETE",
+  //         headers: {
+  //           "Content-Type":"application/json",
+  //         },
+  //       }
+  //     );
+  //     if(res){
+  //       console.log("Article shown is deleted");
+  //       setHome(false);
+  //       navigate("/home");
+  //     }
+  //     else{
+  //       console.log("fix the issue!!");
+  //     }
+  //    }
+  //   };
+  //   deleteData();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [home]);
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
