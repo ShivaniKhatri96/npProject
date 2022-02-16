@@ -17,13 +17,14 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
 const Header = () => {
+  //const [home, setHome]= useState(false);
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
@@ -40,8 +41,34 @@ const Header = () => {
   };
   const imgHandler = (e) => {
     e.preventDefault();
+    //setHome(true);
     navigate("./home");
   };
+  //console.log(home);
+  // useEffect(() => {
+  //   const deleteData = async () => {
+  //    if(home === true){
+  //     const res = await fetch(
+  //       "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",{
+  //         method: "DELETE",
+  //         headers: {
+  //           "Content-Type":"application/json",
+  //         },
+  //       }
+  //     );
+  //     if(res){
+  //       console.log("Article shown is deleted");
+  //       setHome(false);
+  //       navigate("/home");
+  //     }
+  //     else{
+  //       console.log("fix the issue!!");
+  //     }
+  //    }
+  //   };
+  //   deleteData();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [home]);
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
