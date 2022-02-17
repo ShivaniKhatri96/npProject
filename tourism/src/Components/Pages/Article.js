@@ -4,6 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Art, Grid1, Grid2, Typo } from "../../styles/ArticleStyle";
 const Article = () => {
+  //getting data for (one) article from database
   const [one, setOne] = useState([]);
   useEffect(() => {
     const url =
