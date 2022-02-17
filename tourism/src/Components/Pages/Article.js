@@ -33,9 +33,9 @@ const Article = () => {
                   {one.name}
                 </Typo>
                 <CardContent>
-                  {one.content}. {one.learnMore}
+                  {one.content}. {one.description}
                 </CardContent>
-                <CardContent>{one.learnMore}</CardContent>
+                <CardContent>{one.description}</CardContent>
               </Grid>
             </Grid2>
           </Card>

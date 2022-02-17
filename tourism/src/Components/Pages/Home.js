@@ -62,107 +62,107 @@ const Home = () => {
     fetchData();
   }, []);
   // console.log(articles);
-  // console.log(articles.map((article) => article.content));
+
+  useEffect(() => {
+    // const url = "data/data.json";
+    const url =
+      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile/liked.json";
+    const fetchLikedData = async () => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if(data !== null){
+          setLiked(data);
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    fetchLikedData();
+  }, []);
+  console.log(liked);
   //getting the liked data
   const onHandleLiked = (idLiked) => {
-    const findArticle = articles.find((article) =>
-      article.content.some((item) => item.id === idLiked)
-    );
-    const found = findArticle.content.find((item) => item.id === idLiked);
+    const article = articles.find((item) => item.id === idLiked);
     //checking if the item already exists in the liked state
-    const filtered = liked.filter((item) => item.id !== found.id);
-    liked.length === filtered.length
-      ? setLiked((prevState) => [...prevState, found])
-      : filtered.length > 0
-      ? setLiked(filtered)
-      : setLiked([]);
+    if(liked !== null){
+      const filtered = liked.filter((item) => item.id !== article.id);
+      liked.length === filtered.length
+        ? setLiked((prevState) => [...prevState, article])
+        : filtered.length > 0
+        ? setLiked(filtered)
+        : setLiked([]);
+    }
+    else {
+      setLiked(article)
+    }
   };
   console.log(liked);
-  console.log(liked.length);
-  //pushing favourites (liked) to database
-  // useEffect(() => {
-  //   const postFavData = async () => {
-  //     if (liked.length > 0) {
-  //       const res = await fetch(
-  //         "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile.json",
-  //         {
-  //           method: "PUT",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify({
-  //            liked
-  //           }),
-  //         }
-  //       );
-  //       if (res) {
-  //         console.log("Data stored");
-  //       } else {
-  //         console.log("fix the issue!!");
-  //       }
-  //     }
-  //   };
-  //   postFavData().catch(console.error);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [liked]);
-  // useEffect(() => {
-  //   // const url = "data/data.json";
-  //   const url =
-  //     "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile/liked.json";
-  //   const fetchLikedData = async () => {
-  //     try {
-  //       const response = await fetch(url);
-  //       const data = await response.json();
-  //       setPulledLiked(data);
-  //     } catch (error) {
-  //       console.log("error", error);
-  //     }
-  //   };
-  //   fetchLikedData();
-  // }, []);
-  // console.log(pulledLiked);
+ // pushing favourites (liked) to database
+  useEffect(() => {
+    const postFavData = async () => {
+      // if (liked.length > 0) {
+        const res = await fetch(
+          "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile.json",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+             liked
+            }),
+          }
+        );
+        if (res) {
+          console.log("Data stored");
+        } else {
+          console.log("fix the issue!!");
+        }
+      }
+    // };
+    postFavData().catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [liked]);
+ 
   // //getting the data for article page (learn/ setLearn)
-  // const onHandleLearn = (idLearn) => {
-  //   // idLearn.preventDefault();
-  //   const findArticle = articles.find((article) =>
-  //     article.content.some((item) => item.id === idLearn)
-  //   );
-  //   const found = findArticle.content.find((item) => item.id === idLearn);
-  //   setLearn(found);
-  // };
-  // //console.log(learn);
+  const onHandleLearn = (idLearn) => {
+     const article = articles.find((item) => item.id === idLearn)
+    setLearn(article);
+  };
+  console.log(learn);
   // // console.log(Object.keys(learn).length);
 
   // //pushing article (learn) to database
-  // useEffect(() => {
-  //   const postData = async () => {
-  //     if (arrLength !== 0) {
-  //       const res = await fetch(
-  //         "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",
-  //         {
-  //           method: "PUT",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify({
-  //             learn,
-  //           }),
-  //         }
-  //       );
-  //       if (res) {
-  //         console.log("Data stored");
-  //         setLearn([]);
-  //         navigate("/article");
-  //       } else {
-  //         console.log("fix the issue!!");
-  //       }
-  //     }
-  //   };
+  useEffect(() => {
+    const postData = async () => {
+      if (arrLength !== 0) {
+        const res = await fetch(
+          "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              learn,
+            }),
+          }
+        );
+        if (res) {
+          console.log("Data stored");
+          setLearn([]);
+          navigate("/article");
+        } else {
+          console.log("fix the issue!!");
+        }
+      }
+    };
 
-  //   postData().catch(console.error);
+    postData().catch(console.error);
 
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [learn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [learn]);
   return (
     <div>
       <Card
@@ -307,7 +307,7 @@ const Home = () => {
                           )}
                           <Button
                             size="small"
-                            // onClick={() => onHandleLearn(con.id)}
+                            onClick={() => onHandleLearn(con.id)}
                           >
                             Learn more
                           </Button>
