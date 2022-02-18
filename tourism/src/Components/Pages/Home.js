@@ -15,7 +15,7 @@ import Things from "../homeComponents/Things";
 import Festivals from "../homeComponents/Festivals";
 import Food from "../homeComponents/Food";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 // import Data from "../../data.json";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -24,16 +24,18 @@ import { useContext } from "react";
 import AuthKey from "../store/authKey";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
- let navigate = useNavigate();
+  let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
   const [articles, setArticles] = useState([]);
+  const [topic, setTopic] = useState([]);
   const [liked, setLiked] = useState([]);
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
   useEffect(() => {
     // const url = "data/data.json";
-    const url = "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/cards.json"
+    const url =
+      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/cards.json";
     const fetchData = async () => {
       try {
         const response = await fetch(url);
@@ -45,63 +47,123 @@ const Home = () => {
     };
     fetchData();
   }, []);
-
+  useEffect(() => {
+    // const url = "data/topic.json";
+    const url =
+      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/topic.json";
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setTopic(data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    fetchData();
+  }, []);
   // console.log(articles);
-  // console.log(articles.map((article) => article.content));
 
-  const onHandleLiked = (idLiked) => {
-    const findArticle = articles.find((article) =>
-      article.content.some((item) => item.id === idLiked)
-    );
-    const found = findArticle.content.find((item) => item.id === idLiked);
-    const filtered = liked.filter((item) => item.id !== found.id);
-    liked.length === filtered.length
-      ? setLiked((prevState) => [...prevState, found])
-      : setLiked(filtered);
-  };
-  //console.log(liked);
-
-  const onHandleLearn = (idLearn) => {
-    // idLearn.preventDefault();
-    const findArticle = articles.find((article) =>
-    article.content.some((item) => item.id === idLearn)
-  );
-  const found = findArticle.content.find((item) => item.id === idLearn);
-    setLearn(found);
-    // navigate("/article");
-  }
-  //console.log(learn);
-  // console.log(Object.keys(learn).length);
-useEffect(() => {
-  const postData = async () => {
-    if(arrLength !== 0){
-      const res = await fetch(
-        "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",{
-          method: "PUT",
-          headers: {
-            "Content-Type":"application/json",
-          },
-          body:JSON.stringify({
-            learn
-          })
+  useEffect(() => {
+    // const url = "data/data.json";
+    const url =
+      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile/liked.json";
+    const fetchLikedData = async () => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if(data !== null){
+          setLiked(data);
         }
-      );
-      if(res){
-        console.log("Data stored");
-        setLearn([]);
-        navigate("/article");
+      } catch (error) {
+        console.log("error", error);
       }
-      else{
-        console.log("fix the issue!!");
-      }
+    };
+    fetchLikedData();
+  }, []);
+  console.log(liked);
+  //getting the liked data
+  const onHandleLiked = (idLiked) => {
+    const article = articles.find((item) => item.id === idLiked);
+    //checking if the item already exists in the liked state
+    if(liked !== null){
+      const filtered = liked.filter((item) => item.id !== article.id);
+      liked.length === filtered.length
+        ? setLiked((prevState) => [...prevState, article])
+        : filtered.length > 0
+        ? setLiked(filtered)
+        : setLiked([]);
     }
-  }
-
-  postData()
-  .catch(console.error);
+    else {
+      setLiked(article)
+    }
+  };
+  console.log(liked);
+ // pushing favourites (liked) to database
+  useEffect(() => {
+    const postFavData = async () => {
+      // if (liked.length > 0) {
+        const res = await fetch(
+          "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile.json",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+             liked
+            }),
+          }
+        );
+        if (res) {
+          console.log("Data stored");
+        } else {
+          console.log("fix the issue!!");
+        }
+      }
+    // };
+    postFavData().catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [liked]);
  
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [learn]);
+  // //getting the data for article page (learn/ setLearn)
+  const onHandleLearn = (idLearn) => {
+     const article = articles.find((item) => item.id === idLearn)
+    setLearn(article);
+  };
+  console.log(learn);
+  // // console.log(Object.keys(learn).length);
+
+  // //pushing article (learn) to database
+  useEffect(() => {
+    const postData = async () => {
+      if (arrLength !== 0) {
+        const res = await fetch(
+          "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              learn,
+            }),
+          }
+        );
+        if (res) {
+          console.log("Data stored");
+          setLearn([]);
+          navigate("/article");
+        } else {
+          console.log("fix the issue!!");
+        }
+      }
+    };
+
+    postData().catch(console.error);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [learn]);
   return (
     <div>
       <Card
@@ -154,8 +216,8 @@ useEffect(() => {
             <Grid item xs={0.5} sm={1} />
             <Grid item xs={11} sm={10}>
               <video
-              // //controls le sab screen maximize garne haru control dekhaucha
-               // controls
+                // //controls le sab screen maximize garne haru control dekhaucha
+                // controls
                 loop
                 autoPlay
                 muted
@@ -191,8 +253,7 @@ useEffect(() => {
         </Grid>
         <Grid item xs={1} />
       </Grid>
-      {/* {Data.map((post) => { */}
-      {articles.map((post) => {
+      {topic.map((post) => {
         return (
           <div key={post.id}>
             <Grid
@@ -209,44 +270,52 @@ useEffect(() => {
                   {post.title}
                 </Typography>
               </Grid>
-              {post.content.map((con) => {
-                const img = process.env.PUBLIC_URL + con.img;
-                return (
-                  <Grid item xs={10} sm={5} lg={2.5} key={con.id}>
-                    <Card>
-                      <CardMedia
-                        component="img"
-                        title={con.title}
-                        height="220"
-                        image={img}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {con.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {con.content}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        {isLoggedIn && (
-                          <IconButton
-                            aria-label="add to favorites"
-                            onClick={() => onHandleLiked(con.id)}
+              {articles
+                .filter((article) => article.topic === post.id)
+                .map((con) => {
+                  const img = process.env.PUBLIC_URL + con.img;
+                  return (
+                    <Grid item xs={10} sm={5} lg={2.5} key={con.id}>
+                      <Card>
+                        <CardMedia
+                          component="img"
+                          title={con.title}
+                          height="220"
+                          image={img}
+                        />
+                        <CardContent>
+                          <Typography gutterBottom variant="h5" component="div">
+                            {con.name}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {con.content}
+                          </Typography>
+                        </CardContent>
+                        <CardActions>
+                          {isLoggedIn && (
+                            <IconButton
+                              aria-label="add to favorites"
+                              onClick={() => onHandleLiked(con.id)}
+                            >
+                              {/* || !!pulledLiked.find((item) => item.id === con.id) */}
+                              {!!liked.find((item) => item.id === con.id) ? (
+                                <FavoriteIcon color="secondary" />
+                              ) : (
+                                <FavoriteBorderIcon />
+                              )}
+                            </IconButton>
+                          )}
+                          <Button
+                            size="small"
+                            onClick={() => onHandleLearn(con.id)}
                           >
-                            {!!liked.find((item) => item.id === con.id ) ? (
-                               <FavoriteIcon color="secondary" />
-                            ) : (
-                              <FavoriteBorderIcon />
-                            )}
-                          </IconButton>
-                        )}
-                        <Button size="small" onClick={() => onHandleLearn(con.id)}>Learn more</Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                );
-              })}
+                            Learn more
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Grid>
+                  );
+                })}
             </Grid>
           </div>
         );
