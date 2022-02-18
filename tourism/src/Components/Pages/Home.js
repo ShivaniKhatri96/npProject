@@ -29,14 +29,13 @@ const Home = () => {
   const isLoggedIn = authCtx.isLoggedIn;
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState([]);
-  const [pulledLiked, setPulledLiked] = useState([]);
   const [liked, setLiked] = useState([]);
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
   useEffect(() => {
-    const url = "data/data.json";
-    // const url =
-    //   "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/cards.json";
+    // const url = "data/data.json";
+    const url =
+      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/cards.json";
     const fetchData = async () => {
       try {
         const response = await fetch(url);
@@ -49,7 +48,9 @@ const Home = () => {
     fetchData();
   }, []);
   useEffect(() => {
-    const url = "data/topic.json";
+    // const url = "data/topic.json";
+    const url =
+      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/topic.json";
     const fetchData = async () => {
       try {
         const response = await fetch(url);
@@ -252,7 +253,6 @@ const Home = () => {
         </Grid>
         <Grid item xs={1} />
       </Grid>
-      {/* {Data.map((post) => { */}
       {topic.map((post) => {
         return (
           <div key={post.id}>
