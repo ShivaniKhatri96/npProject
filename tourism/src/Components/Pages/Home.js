@@ -35,7 +35,7 @@ const Home = () => {
   useEffect(() => {
     // const url = "data/data.json";
     const url =
-      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/cards.json";
+      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
     const fetchData = async () => {
       try {
         const response = await fetch(url);
