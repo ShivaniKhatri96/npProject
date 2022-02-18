@@ -8,6 +8,7 @@ import {
   Typography,
   CardActions,
   IconButton,
+  linkClasses,
 } from "@mui/material";
 import { Welcome, DivrHome } from "../../styles/HomeStyle";
 import Places from "../homeComponents/Places";
@@ -23,13 +24,14 @@ import Button from "@mui/material/Button";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
 import { useNavigate } from "react-router-dom";
+import db from "../../db";
 const Home = () => {
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState([]);
-  const [liked, setLiked] = useState([]);
+  const [liked, setLiked] = useState(false);
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
   useEffect(() => {
@@ -64,65 +66,88 @@ const Home = () => {
   }, []);
   // console.log(articles);
 
-  useEffect(() => {
-    // const url = "data/data.json";
-    const url =
-      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile/liked.json";
-    const fetchLikedData = async () => {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        if(data !== null){
-          setLiked(data);
-        }
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-    fetchLikedData();
-  }, []);
-  console.log(liked);
+  // useEffect(() => {
+  //   // const url = "data/data.json";
+  //   const url =
+  //     "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile/liked.json";
+  //   const fetchLikedData = async () => {
+  //     try {
+  //       const response = await fetch(url);
+  //       const data = await response.json();
+  //       if(data !== null){
+  //         setLiked(data);
+  //       }
+  //     } catch (error) {
+  //       console.log("error", error);
+  //     }
+  //   };
+  //   fetchLikedData();
+  // }, []);
+  // console.log(liked);
   //getting the liked data
   const onHandleLiked = (idLiked) => {
     const article = articles.find((item) => item.id === idLiked);
-    //checking if the item already exists in the liked state
-    if(liked !== null){
-      const filtered = liked.filter((item) => item.id !== article.id);
-      liked.length === filtered.length
-        ? setLiked((prevState) => [...prevState, article])
-        : filtered.length > 0
-        ? setLiked(filtered)
-        : setLiked([]);
-    }
-    else {
-      setLiked(article)
-    }
+    // //checking if the item already exists in the liked state
+    // if(liked !== null){
+    //   const filtered = liked.filter((item) => item.id !== article.id);
+    //   liked.length === filtered.length
+    //     ? setLiked((prevState) => [...prevState, article])
+    //     : filtered.length > 0
+    //     ? setLiked(filtered)
+    //     : setLiked([]);
+    // }
+    // else {
+    //   setLiked(article)
+    // }
+    setLiked(article);
   };
   console.log(liked);
  // pushing favourites (liked) to database
   useEffect(() => {
+   
     const postFavData = async () => {
-      // if (liked.length > 0) {
-        const res = await fetch(
-          "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile.json",
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-             liked
-            }),
-          }
-        );
-        if (res) {
-          console.log("Data stored");
-        } else {
-          console.log("fix the issue!!");
-        }
+      try {
+        db.database().ref(`cards/${liked.id}`).update({
+         like: !liked.like
+        })
       }
-    // };
+      catch(error){
+        console.log(error)
+      }
+   
+    //   if (liked.length > 0) {
+    //     const res = await fetch(
+    //       "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile.json",
+    //       {
+    //         method: "PUT",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //          liked
+    //         }),
+    //       }
+    //     );
+    //     if (res) {
+    //       console.log("Data stored");
+    //     } else {
+    //       console.log("fix the issue!!");
+    //     }
+    //   }
+    };
     postFavData().catch(console.error);
+    const url =
+    "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/cards.json";
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setArticles(data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [liked]);
  
@@ -298,7 +323,7 @@ const Home = () => {
                               onClick={() => onHandleLiked(con.id)}
                             >
                               {/* || !!pulledLiked.find((item) => item.id === con.id) */}
-                              {!!liked.find((item) => item.id === con.id) ? (
+                              {con.like === true ? (
                                 <FavoriteIcon color="secondary" />
                               ) : (
                                 <FavoriteBorderIcon />

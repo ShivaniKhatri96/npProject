@@ -1,7 +1,7 @@
 [
       {
         "topic":1,
-        "id": 11,
+        "id": 0,
         "name": "Kathmandu",
         "img": "/Pictures/places/kathmandu.jpg",
         "title": "Kathmandu",
@@ -13,7 +13,7 @@
       },
       {
         "topic":1,
-        "id": 12,
+        "id": 1,
         "name": "Chitwan",
         "img": "/Pictures/places/chitwan.jpg",
         "title": "Chitwan",
@@ -24,7 +24,7 @@
       },
       {
         "topic":1,
-        "id": 13,
+        "id": 2,
         "name": "Manang",
         "img": "/Pictures/places/manang.jpg",
         "title": "Manang",
@@ -35,7 +35,7 @@
       },
       {
         "topic":1,
-        "id": 14,
+        "id": 3,
         "name": "Rara",
         "img": "/Pictures/places/rara.jpg",
         "title": "Rara",
@@ -46,7 +46,7 @@
       },
       {
         "topic":2,
-        "id": 21,
+        "id": 4,
         "name": "Mountain viewing",
         "img": "/Pictures/things/mountain.jpg",
         "title": " Mountain Viewing",
@@ -57,7 +57,7 @@
       },
       {
         "topic":2,
-        "id": 22,
+        "id": 5,
         "name": "Jungle discovery",
         "img": "/Pictures/things/jungle.jpg",
         "title": "Jungle",
@@ -68,7 +68,7 @@
       },
       {
         "topic":2,
-        "id": 23,
+        "id": 6,
         "name": "Hiking",
         "img": "/Pictures/things/hiking.jpg",
         "title": "Hiking",
@@ -79,7 +79,7 @@
       },
       {
         "topic":2,
-        "id": 24,
+        "id": 7,
         "name": "Paragliding",
         "img": "/Pictures/things/paragliding.jpg",
         "title": "Paragliding",
@@ -90,7 +90,7 @@
       },
       {
         "topic":3,
-        "id": 31,
+        "id": 8,
         "name": "Dashain",
         "img": "/Pictures/festivals/dashain.jpg",
         "title": "Goddess Durga",
@@ -101,7 +101,7 @@
       },
       {
         "topic":3,
-        "id": 32,
+        "id": 9,
         "name": "Tihar",
         "img": "/Pictures/festivals/tihar.jpg",
         "title": "Tihar",
@@ -112,7 +112,7 @@
       },
       {
         "topic":3,
-        "id": 33,
+        "id": 10,
         "name": "Shivaratri",
         "img": "/Pictures/festivals/shivratri.jpg",
         "title": "Statue of lord Shiva",
@@ -123,7 +123,7 @@
       },
       {
         "topic":3,
-        "id": 34,
+        "id": 11,
         "name": "Holi",
         "img": "/Pictures/festivals/holi.jpg",
         "title": "Holi",
@@ -134,7 +134,7 @@
       },
       {
         "topic":4,
-        "id": 41,
+        "id": 12,
         "name": "Dal Bhat Tarkari",
         "img": "/Pictures/food/bhat.jpg",
         "title": "Dal Bhat Tarkari",
@@ -145,7 +145,7 @@
       },
       {
         "topic":4,
-        "id": 42,
+        "id": 13,
         "name": "Quati",
         "img": "/Pictures/food/quati.jpg",
         "title": " Quati",
@@ -156,7 +156,7 @@
       },
       {
         "topic":4,
-        "id": 43,
+        "id": 14,
         "name": "Samosa",
         "img": "/Pictures/food/samosa.jpg",
         "title": "Samosa",
@@ -167,7 +167,7 @@
       },
       {
         "topic":4,
-        "id": 44,
+        "id": 15,
         "name": "Momo",
         "img": "/Pictures/food/momo.jpg",
         "title": "Momo",
