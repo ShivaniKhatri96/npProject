@@ -31,13 +31,13 @@ const Home = () => {
   const isLoggedIn = authCtx.isLoggedIn;
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState([]);
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState([]);
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
   useEffect(() => {
     // const url = "data/data.json";
     const url =
-      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/cards.json";
+      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
     const fetchData = async () => {
       try {
         const response = await fetch(url);
@@ -89,12 +89,13 @@ const Home = () => {
     const article = articles.find((item) => item.id === idLiked);
     // //checking if the item already exists in the liked state
     // if(liked !== null){
-    //   const filtered = liked.filter((item) => item.id !== article.id);
-    //   liked.length === filtered.length
-    //     ? setLiked((prevState) => [...prevState, article])
-    //     : filtered.length > 0
-    //     ? setLiked(filtered)
-    //     : setLiked([]);
+      
+      // const filtered = liked.filter((item) => item.id !== article.id);
+      // liked.length === filtered.length
+      //   ? setLiked((prevState) => [...prevState, article])
+      //   : filtered.length > 0
+      //   ? setLiked(filtered)
+      //   : setLiked([]);
     // }
     // else {
     //   setLiked(article)
@@ -102,19 +103,38 @@ const Home = () => {
     setLiked(article);
   };
   console.log(liked);
- // pushing favourites (liked) to database
+  console.log(liked.length);
+  console.log(Object.keys(liked).length);
+//  // pushing favourites (liked) to database
   useEffect(() => {
-   
+   if(liked.length !== 0){
     const postFavData = async () => {
       try {
-        db.database().ref(`cards/${liked.id}`).update({
+        db.database().ref(`articles/${liked.id}/`).update({
          like: !liked.like
         })
       }
       catch(error){
         console.log(error)
       }
-   
+    };
+    postFavData().catch(console.error);
+    const url =
+    "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setArticles(data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  fetchData();
+   }
+
+    
+
     //   if (liked.length > 0) {
     //     const res = await fetch(
     //       "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile.json",
@@ -134,20 +154,9 @@ const Home = () => {
     //       console.log("fix the issue!!");
     //     }
     //   }
-    };
-    postFavData().catch(console.error);
-    const url =
-    "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/cards.json";
-  const fetchData = async () => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setArticles(data);
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
-  fetchData();
+    //  };
+    //  postFavData().catch(console.error);
+   
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [liked]);
  
@@ -156,7 +165,7 @@ const Home = () => {
      const article = articles.find((item) => item.id === idLearn)
     setLearn(article);
   };
-  console.log(learn);
+  //console.log(learn);
   // // console.log(Object.keys(learn).length);
 
   // //pushing article (learn) to database
