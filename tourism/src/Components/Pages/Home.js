@@ -32,6 +32,7 @@ const Home = () => {
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState([]);
   const [liked, setLiked] = useState([]);
+  const [unliked, setUnliked]= useState([]);
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
   useEffect(() => {
@@ -49,6 +50,7 @@ const Home = () => {
     };
     fetchData();
   }, []);
+  console.log(articles);
   useEffect(() => {
     // const url = "data/topic.json";
     const url =
@@ -66,6 +68,16 @@ const Home = () => {
   }, []);
   // console.log(articles);
 
+useEffect(() => {
+    // const url = "data/data.json";
+    if(articles !== null){
+      if(Object.keys(articles).length > 0){
+        const liked = articles.filter(item => item.like === true);
+        setLiked(liked);
+      }
+    }
+  }, [articles]);
+console.log(liked);
   // useEffect(() => {
   //   // const url = "data/data.json";
   //   const url =
@@ -85,54 +97,92 @@ const Home = () => {
   // }, []);
   // console.log(liked);
   //getting the liked data
-  const onHandleLiked = (idLiked) => {
-    const article = articles.find((item) => item.id === idLiked);
+  const onHandleLiked = (idClicked) => {
+    //this gives me 1 article that has been clicked
+    const article = articles.find((item) => item.id === idClicked);
     // //checking if the item already exists in the liked state
-    // if(liked !== null){
-      
-      // const filtered = liked.filter((item) => item.id !== article.id);
-      // liked.length === filtered.length
-      //   ? setLiked((prevState) => [...prevState, article])
-      //   : filtered.length > 0
-      //   ? setLiked(filtered)
-      //   : setLiked([]);
+    // if(article.like === false){
+    //   article.like = true;
+    //   setLiked(article);
     // }
     // else {
-    //   setLiked(article)
+    //   article.like = false;
     // }
-    setLiked(article);
-  };
-  console.log(liked);
-  console.log(liked.length);
-  console.log(Object.keys(liked).length);
-//  // pushing favourites (liked) to database
-  useEffect(() => {
-   if(liked.length !== 0){
-    const postFavData = async () => {
-      try {
-        db.database().ref(`articles/${liked.id}/`).update({
-         like: !liked.like
-        })
-      }
-      catch(error){
-        console.log(error)
-      }
-    };
-    postFavData().catch(console.error);
-    const url =
-    "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
-  const fetchData = async () => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setArticles(data);
-    } catch (error) {
-      console.log("error", error);
+    if(liked !== null){
+      const disliked = liked.filter((item => item.id === article.id));
+        if(Object.keys(disliked).length > 0){
+        //  if(unliked.length > 1){
+        //     setUnliked((prevState) => [...prevState, disliked]);
+        //  }
+        //   else if(unliked.length === 0){
+        //     setUnliked(disliked);
+        //   }
+        setUnliked(disliked);
+        }
+        
+      
+     
+      const filtered = liked.filter((item) => item.id !== article.id);
+      liked.length === filtered.length
+        ? setLiked((prevState) => [...prevState, article])
+        : filtered.length > 0
+        ? setLiked(filtered)
+        : setLiked([]);
+    }
+    else {
+      setLiked(article)
     }
   };
-  fetchData();
-   }
-
+  console.log(liked);
+  console.log(unliked);
+  console.log(unliked.id);
+  // console.log(liked.length);
+  // console.log(Object.keys(liked).length);
+//  // pushing favourites (liked) to database
+  useEffect(() => {
+    
+   if(liked !== null){
+     if(Object.keys(liked).length > 0){
+      for(const i of liked){
+        const postFavData = async () => {
+        //   const url =
+        // "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
+          try {
+            db.database().ref(`articles/${i.id}/`).update({
+             like: true
+            })
+            console.log("sent to db");
+            // const response = await fetch(url);
+            // const data = await response.json();
+            // setArticles(data);
+            // console.log("changed");
+          }
+          catch(error){
+            console.log(error)
+          }
+        };
+        postFavData().catch(console.error);
+       
+       }
+     }
+     
+     }
+   
+  //  if(postFavData()){
+  //   const url =
+  //   "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await fetch(url);
+  //     const data = await response.json();
+  //     setArticles(data);
+  //     console.log("changed");
+  //   } catch (error) {
+  //     console.log("error", error);
+  //   }
+  // };
+  // fetchData();
+  //  }
     
 
     //   if (liked.length > 0) {
@@ -159,7 +209,29 @@ const Home = () => {
    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [liked]);
- 
+  useEffect(() => {
+    
+    //if(unliked !== null){
+      if(Object.keys(unliked).length > 0){
+       for(const i of unliked){
+         const postData = async () => {
+           try {
+             db.database().ref(`articles/${i.id}/`).update({
+              like: false
+             })
+             console.log("sent to db");
+           }
+           catch(error){
+             console.log(error)
+           }
+         };
+         postData().catch(console.error);
+        
+        }
+      //}
+      
+      }
+   }, [unliked]);
   // //getting the data for article page (learn/ setLearn)
   const onHandleLearn = (idLearn) => {
      const article = articles.find((item) => item.id === idLearn)
@@ -331,8 +403,9 @@ const Home = () => {
                               aria-label="add to favorites"
                               onClick={() => onHandleLiked(con.id)}
                             >
-                              {/* || !!pulledLiked.find((item) => item.id === con.id) */}
-                              {con.like === true ? (
+                              {/* || !!liked.find((item) => item.id === con.id) */}
+                              {/* con.like === true */}
+                              {!!liked.find((item) => item.id === con.id) ? (
                                 <FavoriteIcon color="secondary" />
                               ) : (
                                 <FavoriteBorderIcon />
