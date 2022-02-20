@@ -42,7 +42,7 @@ const Connect = () => {
   // };
   //false when only log in page is shown
   const [open, setOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const signUpHandler = (e) => {
     e.preventDefault();
     setOpen(true);
@@ -90,7 +90,7 @@ const Connect = () => {
           }
         })
         .then((data) => {
-          // console.log(data);
+          //console.log(data);
           authCtx.login(data.idToken);
         })
         .catch((err) => {
@@ -128,10 +128,11 @@ const Connect = () => {
         } else {
           console.log("invalid Registration");
         }
-      });
-      // .then((data) => {
-      //   authCtx.login(data.idToken);
-      //  })
+      })
+      //  .then((data) => {
+      //   console.log(data);
+      // //   authCtx.login(data.idToken);
+      //   })
     }
   };
   return (
