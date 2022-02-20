@@ -8,14 +8,9 @@ import {
   Typography,
   CardActions,
   IconButton,
-  linkClasses,
 } from "@mui/material";
 import { Welcome, DivrHome } from "../../styles/HomeStyle";
-import Places from "../homeComponents/Places";
-import Things from "../homeComponents/Things";
-import Festivals from "../homeComponents/Festivals";
-import Food from "../homeComponents/Food";
-import CircularProgress from "@mui/material/CircularProgress";
+// import CircularProgress from "@mui/material/CircularProgress";
 import { useState, useEffect } from "react";
 // import Data from "../../data.json";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -50,7 +45,7 @@ const Home = () => {
     };
     fetchData();
   }, []);
-  console.log(articles);
+  //console.log(articles);
   useEffect(() => {
     // const url = "data/topic.json";
     const url =
@@ -77,51 +72,18 @@ useEffect(() => {
       }
     }
   }, [articles]);
-console.log(liked);
-  // useEffect(() => {
-  //   // const url = "data/data.json";
-  //   const url =
-  //     "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile/liked.json";
-  //   const fetchLikedData = async () => {
-  //     try {
-  //       const response = await fetch(url);
-  //       const data = await response.json();
-  //       if(data !== null){
-  //         setLiked(data);
-  //       }
-  //     } catch (error) {
-  //       console.log("error", error);
-  //     }
-  //   };
-  //   fetchLikedData();
-  // }, []);
-  // console.log(liked);
+//console.log(liked);
+
   //getting the liked data
   const onHandleLiked = (idClicked) => {
     //this gives me 1 article that has been clicked
     const article = articles.find((item) => item.id === idClicked);
-    // //checking if the item already exists in the liked state
-    // if(article.like === false){
-    //   article.like = true;
-    //   setLiked(article);
-    // }
-    // else {
-    //   article.like = false;
-    // }
+    // checking if the item already exists in the liked state
     if(liked !== null){
       const disliked = liked.filter((item => item.id === article.id));
         if(Object.keys(disliked).length > 0){
-        //  if(unliked.length > 1){
-        //     setUnliked((prevState) => [...prevState, disliked]);
-        //  }
-        //   else if(unliked.length === 0){
-        //     setUnliked(disliked);
-        //   }
         setUnliked(disliked);
         }
-        
-      
-     
       const filtered = liked.filter((item) => item.id !== article.id);
       liked.length === filtered.length
         ? setLiked((prevState) => [...prevState, article])
@@ -133,11 +95,12 @@ console.log(liked);
       setLiked(article)
     }
   };
-  console.log(liked);
-  console.log(unliked);
-  console.log(unliked.id);
+  // console.log(liked);
+  // console.log(unliked);
+  // console.log(unliked.id);
   // console.log(liked.length);
   // console.log(Object.keys(liked).length);
+
 //  // pushing favourites (liked) to database
   useEffect(() => {
     
@@ -145,17 +108,11 @@ console.log(liked);
      if(Object.keys(liked).length > 0){
       for(const i of liked){
         const postFavData = async () => {
-        //   const url =
-        // "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
           try {
             db.database().ref(`articles/${i.id}/`).update({
              like: true
             })
             console.log("sent to db");
-            // const response = await fetch(url);
-            // const data = await response.json();
-            // setArticles(data);
-            // console.log("changed");
           }
           catch(error){
             console.log(error)
@@ -167,50 +124,8 @@ console.log(liked);
      }
      
      }
-   
-  //  if(postFavData()){
-  //   const url =
-  //   "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch(url);
-  //     const data = await response.json();
-  //     setArticles(data);
-  //     console.log("changed");
-  //   } catch (error) {
-  //     console.log("error", error);
-  //   }
-  // };
-  // fetchData();
-  //  }
-    
-
-    //   if (liked.length > 0) {
-    //     const res = await fetch(
-    //       "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile.json",
-    //       {
-    //         method: "PUT",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //          liked
-    //         }),
-    //       }
-    //     );
-    //     if (res) {
-    //       console.log("Data stored");
-    //     } else {
-    //       console.log("fix the issue!!");
-    //     }
-    //   }
-    //  };
-    //  postFavData().catch(console.error);
-   
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [liked]);
   useEffect(() => {
-    
     //if(unliked !== null){
       if(Object.keys(unliked).length > 0){
        for(const i of unliked){
@@ -229,7 +144,6 @@ console.log(liked);
         
         }
       //}
-      
       }
    }, [unliked]);
   // //getting the data for article page (learn/ setLearn)
@@ -403,8 +317,6 @@ console.log(liked);
                               aria-label="add to favorites"
                               onClick={() => onHandleLiked(con.id)}
                             >
-                              {/* || !!liked.find((item) => item.id === con.id) */}
-                              {/* con.like === true */}
                               {!!liked.find((item) => item.id === con.id) ? (
                                 <FavoriteIcon color="secondary" />
                               ) : (
