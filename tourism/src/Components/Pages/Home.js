@@ -10,11 +10,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { Welcome, DivrHome } from "../../styles/HomeStyle";
-import Places from "../homeComponents/Places";
-import Things from "../homeComponents/Things";
-import Festivals from "../homeComponents/Festivals";
-import Food from "../homeComponents/Food";
-import CircularProgress from "@mui/material/CircularProgress";
+// import CircularProgress from "@mui/material/CircularProgress";
 import { useState, useEffect } from "react";
 // import Data from "../../data.json";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -23,6 +19,7 @@ import Button from "@mui/material/Button";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
 import { useNavigate } from "react-router-dom";
+import db from "../../db";
 const Home = () => {
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
@@ -30,6 +27,7 @@ const Home = () => {
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState([]);
   const [liked, setLiked] = useState([]);
+  const [unliked, setUnliked]= useState([]);
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
   useEffect(() => {
@@ -47,6 +45,7 @@ const Home = () => {
     };
     fetchData();
   }, []);
+  //console.log(articles);
   useEffect(() => {
     // const url = "data/topic.json";
     const url =
@@ -64,29 +63,27 @@ const Home = () => {
   }, []);
   // console.log(articles);
 
-  useEffect(() => {
+useEffect(() => {
     // const url = "data/data.json";
-    const url =
-      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile/liked.json";
-    const fetchLikedData = async () => {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        if(data !== null){
-          setLiked(data);
-        }
-      } catch (error) {
-        console.log("error", error);
+    if(articles !== null){
+      if(Object.keys(articles).length > 0){
+        const liked = articles.filter(item => item.like === true);
+        setLiked(liked);
       }
-    };
-    fetchLikedData();
-  }, []);
-  console.log(liked);
+    }
+  }, [articles]);
+//console.log(liked);
+
   //getting the liked data
-  const onHandleLiked = (idLiked) => {
-    const article = articles.find((item) => item.id === idLiked);
-    //checking if the item already exists in the liked state
+  const onHandleLiked = (idClicked) => {
+    //this gives me 1 article that has been clicked
+    const article = articles.find((item) => item.id === idClicked);
+    // checking if the item already exists in the liked state
     if(liked !== null){
+      const disliked = liked.filter((item => item.id === article.id));
+        if(Object.keys(disliked).length > 0){
+        setUnliked(disliked);
+        }
       const filtered = liked.filter((item) => item.id !== article.id);
       liked.length === filtered.length
         ? setLiked((prevState) => [...prevState, article])
@@ -98,40 +95,63 @@ const Home = () => {
       setLiked(article)
     }
   };
-  console.log(liked);
- // pushing favourites (liked) to database
+  // console.log(liked);
+  // console.log(unliked);
+  // console.log(unliked.id);
+  // console.log(liked.length);
+  // console.log(Object.keys(liked).length);
+
+//  // pushing favourites (liked) to database
   useEffect(() => {
-    const postFavData = async () => {
-      // if (liked.length > 0) {
-        const res = await fetch(
-          "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile.json",
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-             liked
-            }),
+    
+   if(liked !== null){
+     if(Object.keys(liked).length > 0){
+      for(const i of liked){
+        const postFavData = async () => {
+          try {
+            db.database().ref(`articles/${i.id}/`).update({
+             like: true
+            })
+            console.log("sent to db");
           }
-        );
-        if (res) {
-          console.log("Data stored");
-        } else {
-          console.log("fix the issue!!");
-        }
-      }
-    // };
-    postFavData().catch(console.error);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+          catch(error){
+            console.log(error)
+          }
+        };
+        postFavData().catch(console.error);
+       
+       }
+     }
+     
+     }
   }, [liked]);
- 
+  useEffect(() => {
+    //if(unliked !== null){
+      if(Object.keys(unliked).length > 0){
+       for(const i of unliked){
+         const postData = async () => {
+           try {
+             db.database().ref(`articles/${i.id}/`).update({
+              like: false
+             })
+             console.log("sent to db");
+           }
+           catch(error){
+             console.log(error)
+           }
+         };
+         postData().catch(console.error);
+        
+        }
+      //}
+      }
+   }, [unliked]);
   // //getting the data for article page (learn/ setLearn)
   const onHandleLearn = (idLearn) => {
      const article = articles.find((item) => item.id === idLearn)
     setLearn(article);
   };
-  console.log(learn);
+  //console.log(learn);
   // // console.log(Object.keys(learn).length);
 
   // //pushing article (learn) to database
@@ -297,7 +317,6 @@ const Home = () => {
                               aria-label="add to favorites"
                               onClick={() => onHandleLiked(con.id)}
                             >
-                              {/* || !!pulledLiked.find((item) => item.id === con.id) */}
                               {!!liked.find((item) => item.id === con.id) ? (
                                 <FavoriteIcon color="secondary" />
                               ) : (
