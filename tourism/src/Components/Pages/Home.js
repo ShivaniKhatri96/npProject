@@ -20,10 +20,14 @@ import { useContext } from "react";
 import AuthKey from "../store/authKey";
 import { useNavigate } from "react-router-dom";
 import db from "../../db";
+
+
 const Home = () => {
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
+  const userId = authCtx.userId;
+  //console.log(userId);
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState([]);
   const [liked, setLiked] = useState([]);
@@ -31,7 +35,6 @@ const Home = () => {
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
   useEffect(() => {
-    // const url = "data/data.json";
     const url =
       "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
     const fetchData = async () => {
@@ -61,14 +64,19 @@ const Home = () => {
     };
     fetchData();
   }, []);
-  // console.log(articles);
-
+ 
 useEffect(() => {
-    // const url = "data/data.json";
     if(articles !== null){
       if(Object.keys(articles).length > 0){
-        const liked = articles.filter(item => item.like === true);
-        setLiked(liked);
+        for(let article of articles){
+            for (const key in article){
+              if(article.hasOwnProperty(key)){
+                if(key === userId){
+                  setLiked(prevState => [...prevState, article]);
+                 }
+              }
+            }
+        }
       }
     }
   }, [articles]);
@@ -80,11 +88,11 @@ useEffect(() => {
     const article = articles.find((item) => item.id === idClicked);
     // checking if the item already exists in the liked state
     if(liked !== null){
-      const disliked = liked.filter((item => item.id === article.id));
+      const disliked = liked.filter((item) =>  item.id === article.id);
         if(Object.keys(disliked).length > 0){
         setUnliked(disliked);
         }
-      const filtered = liked.filter((item) => item.id !== article.id);
+      const filtered = liked.filter((item) =>  item.id !== article.id);
       liked.length === filtered.length
         ? setLiked((prevState) => [...prevState, article])
         : filtered.length > 0
@@ -95,10 +103,8 @@ useEffect(() => {
       setLiked(article)
     }
   };
-  // console.log(liked);
+   //console.log(liked);
   // console.log(unliked);
-  // console.log(unliked.id);
-  // console.log(liked.length);
   // console.log(Object.keys(liked).length);
 
 //  // pushing favourites (liked) to database
@@ -109,9 +115,11 @@ useEffect(() => {
       for(const i of liked){
         const postFavData = async () => {
           try {
-            db.database().ref(`articles/${i.id}/`).update({
-             like: true
-            })
+
+              db.database().ref(`/articles/${i.id}/`).child(`${userId}`).set({likedBy :true})
+            // db.database().ref(`articles/${i.id}/`).update({
+            //  like: true
+            // })
             console.log("sent to db");
           }
           catch(error){
@@ -131,9 +139,10 @@ useEffect(() => {
        for(const i of unliked){
          const postData = async () => {
            try {
-             db.database().ref(`articles/${i.id}/`).update({
-              like: false
-             })
+            db.database().ref(`/articles/${i.id}/`).child(`${userId}`).remove()
+            //  db.database().ref(`articles/${i.id}/`).update({
+              //  like:false
+            // })
              console.log("sent to db");
            }
            catch(error){
