@@ -113,6 +113,7 @@ const Connect = () => {
            
           } else {
             console.log("log in unsuccessful");
+            alert("Password or email incorrect!!");
           }
         })
         .then((data) => {
@@ -156,6 +157,7 @@ const Connect = () => {
           return res.json();
         } else {
           console.log("invalid Registration");
+          alert("password should be minimum 6 characters!!");
         }
       })
       //  .then((data) => {
