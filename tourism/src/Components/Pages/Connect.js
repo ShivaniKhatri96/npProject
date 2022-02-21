@@ -16,7 +16,31 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
 import AuthKey from "../store/authKey";
+import db from "../../db";
+import { useEffect } from "react";
+
+
+
+// console.log(articles);
 const Connect = () => {
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    const url =
+      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setArticles(data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    fetchData();
+  }, []);
+  //console.log(articles);
+
+
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const [newUser, setNewUser] = useState({
@@ -85,13 +109,18 @@ const Connect = () => {
             console.log("Successfully logged in");
             navigate("/");
             return res.json();
+            // db.collection('users').doc(data.localId);
+           
           } else {
             console.log("log in unsuccessful");
           }
         })
         .then((data) => {
           //console.log(data);
-          authCtx.login(data.idToken);
+          authCtx.login(data.idToken, data.localId);
+         db.database().ref(`users/`).set({
+            user_id: data.localId
+         })
         })
         .catch((err) => {
           console.log(err);
@@ -130,11 +159,14 @@ const Connect = () => {
         }
       })
       //  .then((data) => {
-      //   console.log(data);
+      //   //console.log(data);
+      //   setUserId(data.localId);
+      //   console.log(userId);
       // //   authCtx.login(data.idToken);
       //   })
     }
   };
+
   return (
     <Card
       sx={{
