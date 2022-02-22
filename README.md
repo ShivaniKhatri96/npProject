@@ -1,5 +1,5 @@
 # Tourism Website
-[![Tourism Website](./src/Components/readmePic/tourismWebsite.png)](https://np-project-33535.web.app/)
+[![Tourism Website](./tourism/src/Components/readmePic/tourismWebsite.png)](https://np-project-33535.web.app/)
 ## Country: Nepal
 Even though I have a Belgian Nationality, I am originally from Nepal. So, I wanted to create a website about Nepal to honor my childhood memories. 
 ## Color Palette
