@@ -12,7 +12,13 @@
 - info about holi: https://www.altitudehimalaya.com/blog/holi-festival-in-nepal
 - Disclaimer: this is a personal project for building my portfolio. If you wish to travel to Nepal and want correct information, check the official link mentioned above!!
 ----------------------------
+## Things that are completed
+- Home page: card information fetched from database. Like/ unlike feature is authenticated. One user can only access their own like/unlike list. Articles can be read without logging in
+- Connect page with authentication
 ## Currently working on
-- Home page
+- Profile page: favorites
 ## Next 
-- Profile page
+- Searchbar
+## Things I want to improve later
+- Home page video
+- Include password validation for connect page as well as improve other validations
