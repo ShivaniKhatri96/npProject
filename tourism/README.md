@@ -17,7 +17,7 @@ Even though I have a Belgian Nationality, I am originally from Nepal. So, I want
 - One user can only access their own like/unlike list
 - Articles can be read with and without logging in 
 ### Connect page
-- Sign up and log in page completed with authentication
+- Sign up and log in pages are completed with authentication
 ### Responsive layout
 - Everything done so far has a responsive design that adapts to different screen sizes
 - Below you can see example from home page for xs screens, sm screens and higher, and lg screens and higher
@@ -33,6 +33,7 @@ Even though I have a Belgian Nationality, I am originally from Nepal. So, I want
 - Searchbar
 ## Things I want to improve later
 - Home page video
+- keeping the card length same. Right now, in some cases, the card length fluctuates due to the different amount of words in each card
 - Include password validation for connect page as well as improve other validations
 ## Links
 - Logo from [Adobe logo-maker](https://express.adobe.com/express-apps/logo-maker/) 
