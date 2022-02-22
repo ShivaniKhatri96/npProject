@@ -20,12 +20,9 @@ Even though I have a Belgian Nationality, I am originally from Nepal. So, I want
 - Sign up and log in page completed with authentication
 ### Responsive layout
 - Everything done so far has a responsive design that adapts to different screen sizes
-- Below you can see example from home page
-- xs screens
+- Below you can see example from home page for xs screens, sm screens and higher, and lg screens and higher
 ![xs screens](./src/Components/readmePic/xs.png)
-- sm screens and higher
 ![sm screens and higher](./src/Components/readmePic/sm.png)
-- lg screens and higher
 ![sm screens and higher](./src/Components/readmePic/lg.png)
 
 
