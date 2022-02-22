@@ -1,23 +1,34 @@
 # Tourism Website
-[![Tourism Website](./src/Components/store/tourismWebsite.png)](https://np-project-33535.web.app/)
+[![Tourism Website](./src/Components/readmePic/tourismWebsite.png)](https://np-project-33535.web.app/)
 ## Country: Nepal
 Even though I have a Belgian Nationality, I am originally from Nepal. So, I wanted to create a website about Nepal to honor my childhood memories. 
 ## Color Palette
- ![color palette](./src/Components/store/colorPalette.png)
+ ![color palette](./src/Components/readmePic/colorPalette.png)
 ## Tools
 - React 
 - Material UI
 - Firebase real-time database
 - Deployment: Firebase hosting
 
-----------------------------
 ## Things that are completed
 ### Home page
 - Card information fetched from database
 - Like/ unlike feature is authenticated
 - One user can only access their own like/unlike list
 - Articles can be read with and without logging in 
-- Connect page with authentication
+### Connect page
+- Sign up and log in page completed with authentication
+### Responsive layout
+- Everything done so far has a responsive design that adapts to different screen sizes
+- Below you can see example from home page
+- xs screens
+![xs screens](./src/Components/readmePic/xs.png)
+- sm screens and higher
+![sm screens and higher](./src/Components/readmePic/sm.png)
+- lg screens and higher
+![sm screens and higher](./src/Components/readmePic/lg.png)
+
+
 ## Currently working on
 ### Profile page
 - favorites list will be created
