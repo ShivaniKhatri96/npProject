@@ -1,8 +1,9 @@
 # Tourism Website
+[![Tourism Website](./src/Components/store/tourismWebsite.png)](https://np-project-33535.web.app/)
 ## Country: Nepal
-- Even though I have a Belgian Nationality, I am originally from Nepal. I wanted to create a website about Nepal to honour my childhood memories. 
+- Even though I have a Belgian Nationality, I am originally from Nepal. I wanted to create a website about Nepal to honor my childhood memories. 
 ## Color Palette
-- ![color palette](./src/Components/store/colorPalette.png)
+ ![color palette](./src/Components/store/colorPalette.png)
 ## Tools
 - React 
 - Material UI
