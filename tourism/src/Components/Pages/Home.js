@@ -22,85 +22,52 @@ import { useNavigate } from "react-router-dom";
 import db from "../../db";
 
 
-const Home = () => {
+const Home = (props) => {
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
   const userId = authCtx.userId;
   //console.log(userId);
-  const [articles, setArticles] = useState([]);
-  const [topic, setTopic] = useState([]);
-  const [liked, setLiked] = useState([]);
-  const [unliked, setUnliked]= useState([]);
+  const [unliked, setUnliked] = useState([]);
+ 
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
-  useEffect(() => {
-    const url =
-      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setArticles(data);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-    fetchData();
-  }, []);
-  //console.log(articles);
-  useEffect(() => {
-    // const url = "data/topic.json";
-    const url =
-      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/topic.json";
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setTopic(data);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-    fetchData();
-  }, []);
- 
+//console.log(liked);
 useEffect(() => {
-    if(articles !== null){
-      if(Object.keys(articles).length > 0){
-        for(let article of articles){
-            for (const key in article){
-              if(article.hasOwnProperty(key)){
-                if(key === userId){
-                  setLiked(prevState => [...prevState, article]);
-                 }
+  if (props.articles !== null && userId !== null) {
+    if (Object.keys(props.articles).length > 0) {
+      for (let article of props.articles) {
+        for (const key in article) {
+          if (article.hasOwnProperty(key)) {
+              if (key === userId) {
+                props.setLiked((prevState) => [...prevState, article]);
               }
             }
+          } 
         }
-      }
     }
-  }, [articles]);
-//console.log(liked);
-
+  }
+}, [props.articles]);
+console.log(props.liked);
   //getting the liked data
   const onHandleLiked = (idClicked) => {
     //this gives me 1 article that has been clicked
-    const article = articles.find((item) => item.id === idClicked);
+    const article = props.articles.find((item) => item.id === idClicked);
     // checking if the item already exists in the liked state
-    if(liked !== null){
-      const disliked = liked.filter((item) =>  item.id === article.id);
+    if( props.liked !== null){
+      const disliked =  props.liked.filter((item) =>  item.id === article.id);
         if(Object.keys(disliked).length > 0){
-        setUnliked(disliked);
+      setUnliked(disliked);
         }
-      const filtered = liked.filter((item) =>  item.id !== article.id);
-      liked.length === filtered.length
-        ? setLiked((prevState) => [...prevState, article])
+      const filtered =  props.liked.filter((item) =>  item.id !== article.id);
+      props.liked.length === filtered.length
+        ?  props.setLiked((prevState) => [...prevState, article])
         : filtered.length > 0
-        ? setLiked(filtered)
-        : setLiked([]);
+        ?  props.setLiked(filtered)
+        :  props.setLiked([]);
     }
     else {
-      setLiked(article)
+      props.setLiked(article)
     }
   };
    //console.log(liked);
@@ -110,9 +77,9 @@ useEffect(() => {
 //  // pushing favourites (liked) to database
   useEffect(() => {
     
-   if(liked !== null){
-     if(Object.keys(liked).length > 0){
-      for(const i of liked){
+   if( props.liked !== null){
+     if(Object.keys( props.liked).length > 0){
+      for(const i of  props.liked){
         const postFavData = async () => {
           try {
 
@@ -132,7 +99,7 @@ useEffect(() => {
      }
      
      }
-  }, [liked]);
+  }, [ props.liked]);
   useEffect(() => {
     //if(unliked !== null){
       if(Object.keys(unliked).length > 0){
@@ -157,7 +124,7 @@ useEffect(() => {
    }, [unliked]);
   // //getting the data for article page (learn/ setLearn)
   const onHandleLearn = (idLearn) => {
-     const article = articles.find((item) => item.id === idLearn)
+     const article = props.articles.find((item) => item.id === idLearn)
     setLearn(article);
   };
   //console.log(learn);
@@ -282,7 +249,7 @@ useEffect(() => {
         </Grid>
         <Grid item xs={1} />
       </Grid>
-      {topic.map((post) => {
+      {props.topic.map((post) => {
         return (
           <div key={post.id}>
             <Grid
@@ -299,7 +266,7 @@ useEffect(() => {
                   {post.title}
                 </Typography>
               </Grid>
-              {articles
+              {props.articles
                 .filter((article) => article.topic === post.id)
                 .map((con) => {
                   const img = process.env.PUBLIC_URL + con.img;
@@ -326,7 +293,7 @@ useEffect(() => {
                               aria-label="add to favorites"
                               onClick={() => onHandleLiked(con.id)}
                             >
-                              {!!liked.find((item) => item.id === con.id) ? (
+                              {!! props.liked.find((item) => item.id === con.id) ? (
                                 <FavoriteIcon color="secondary" />
                               ) : (
                                 <FavoriteBorderIcon />

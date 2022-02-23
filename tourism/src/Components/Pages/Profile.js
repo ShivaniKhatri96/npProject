@@ -1,49 +1,58 @@
-import Future from "../miniComponents/Future";
 import Grid from "@mui/material/Grid";
-import { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
 import {
-    Card,
-    CardMedia,
-    CardContent,
-    Typography
-  } from "@mui/material";
-const Profile = () => {
-  //getting data for (fav) favourites from database
-  const [fav, setFav] = useState([]);
-  useEffect(() => {
-    const url = "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/profile/liked.json";
-    const fetchLiked = async () => {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setFav(data);
-      }
-      catch (error) {
-        console.log("error", error);
-      }
-    };
-    fetchLiked();
-  }, []);
-  console.log(fav);
-  // const [one, setOne] = useState([]);
-  // useEffect(() => {
-  //   const url =
-  //     "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article/learn.json";
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(url);
-  //       const data = await response.json();
-  //       setOne(data);
-  //     } catch (error) {
-  //       console.log("error", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-  // console.log(one);
-
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+} from "@mui/material";
+const Profile = (props) => {
+  console.log(props.liked);
   return (
-     <Future />
+    <Grid
+    container
+    spacing={3}
+    sx={{
+      marginY: "80px",
+      display: "flex",
+      justifyContent: "center",
+    }}
+  >
+{props.liked.map((con) => {
+                const img = process.env.PUBLIC_URL + con.img;
+                return (
+                 
+                  <Grid item xs={10} sm={5} lg={2.5} key={con.id}>
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        title={con.title}
+                        height="220"
+                        image={img}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {con.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {con.content}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button
+                          size="small"
+                         // onClick={() => onHandleLearn(con.id)}
+                        >
+                          Learn more
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                
+                );
+              })}
+          </Grid>
   );
 };
 export default Profile;
