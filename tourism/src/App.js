@@ -13,18 +13,19 @@ import { useContext } from "react";
 import AuthKey from "./Components/store/authKey";
 import { Navigate } from "react-router";
 import { useState, useEffect } from "react";
-
+import db from "./db";
 function App() {
   const authCtx = useContext(AuthKey);
   console.log(authCtx.isLoggedIn);
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState([]);
   const [liked, setLiked] = useState([]);
+  const userId = authCtx.userId;
 
-  if(!authCtx.isLoggedIn){
-    setLiked([]);
-  }
-
+  // if(!authCtx.isLoggedIn){
+  //   setArticles([]);
+  //   setLiked([]);
+  // }
 
   useEffect(() => {
     const url =
@@ -57,7 +58,47 @@ function App() {
     fetchData();
   }, []);
   console.log(articles);
-  
+  console.log(liked);
+  useEffect(() => {
+      if (articles !== null && userId !== null) {
+        if (Object.keys(articles).length > 0) {
+          for (let article of articles) {
+            for (const key in article) {
+              if (article.hasOwnProperty(key)) {
+                  if (key === userId) {
+                    setLiked((prevState) => [...prevState, article]);
+                  }
+                }
+              } 
+            }
+        }
+      } 
+  }, [articles]);
+  useEffect(() => {
+    
+    if( liked !== null){
+      if(Object.keys( liked).length > 0){
+       for(const i of  liked){
+         const postFavData = async () => {
+           try {
+ 
+               db.database().ref(`/articles/${i.id}/`).child(`${userId}`).set({likedBy :true})
+             // db.database().ref(`articles/${i.id}/`).update({
+             //  like: true
+             // })
+             console.log("liked sent to db");
+           }
+           catch(error){
+             console.log(error)
+           }
+         };
+         postFavData().catch(console.error);
+        
+        }
+      }
+      
+      }
+   }, [ liked]);
 
   return (
     <div>

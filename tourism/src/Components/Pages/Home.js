@@ -33,21 +33,21 @@ const Home = (props) => {
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
 //console.log(liked);
-useEffect(() => {
-  if (props.articles !== null && userId !== null) {
-    if (Object.keys(props.articles).length > 0) {
-      for (let article of props.articles) {
-        for (const key in article) {
-          if (article.hasOwnProperty(key)) {
-              if (key === userId) {
-                props.setLiked((prevState) => [...prevState, article]);
-              }
-            }
-          } 
-        }
-    }
-  }
-}, [props.articles]);
+// useEffect(() => {
+//   if (props.articles !== null && userId !== null) {
+//     if (Object.keys(props.articles).length > 0) {
+//       for (let article of props.articles) {
+//         for (const key in article) {
+//           if (article.hasOwnProperty(key)) {
+//               if (key === userId) {
+//                 props.setLiked((prevState) => [...prevState, article]);
+//               }
+//             }
+//           } 
+//         }
+//     }
+//   }
+// }, [props.articles]);
 console.log(props.liked);
   //getting the liked data
   const onHandleLiked = (idClicked) => {
@@ -75,31 +75,31 @@ console.log(props.liked);
   // console.log(Object.keys(liked).length);
 
 //  // pushing favourites (liked) to database
-  useEffect(() => {
+  // useEffect(() => {
     
-   if( props.liked !== null){
-     if(Object.keys( props.liked).length > 0){
-      for(const i of  props.liked){
-        const postFavData = async () => {
-          try {
+  //  if( props.liked !== null){
+  //    if(Object.keys( props.liked).length > 0){
+  //     for(const i of  props.liked){
+  //       const postFavData = async () => {
+  //         try {
 
-              db.database().ref(`/articles/${i.id}/`).child(`${userId}`).set({likedBy :true})
-            // db.database().ref(`articles/${i.id}/`).update({
-            //  like: true
-            // })
-            console.log("sent to db");
-          }
-          catch(error){
-            console.log(error)
-          }
-        };
-        postFavData().catch(console.error);
+  //             db.database().ref(`/articles/${i.id}/`).child(`${userId}`).set({likedBy :true})
+  //           // db.database().ref(`articles/${i.id}/`).update({
+  //           //  like: true
+  //           // })
+  //           console.log("liked sent to db");
+  //         }
+  //         catch(error){
+  //           console.log(error)
+  //         }
+  //       };
+  //       postFavData().catch(console.error);
        
-       }
-     }
+  //      }
+  //    }
      
-     }
-  }, [ props.liked]);
+  //    }
+  // }, [ props.liked]);
   useEffect(() => {
     //if(unliked !== null){
       if(Object.keys(unliked).length > 0){
@@ -110,7 +110,7 @@ console.log(props.liked);
             //  db.database().ref(`articles/${i.id}/`).update({
               //  like:false
             // })
-             console.log("sent to db");
+             console.log("unliked sent to db");
            }
            catch(error){
              console.log(error)
