@@ -1,5 +1,3 @@
-// import './App.css';
-
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Pages/Home";
 import Connect from "./Components/Pages/Connect";
@@ -21,29 +19,7 @@ function App() {
   const [topic, setTopic] = useState([]);
   const [liked, setLiked] = useState([]);
   const userId = authCtx.userId;
-
-  // if(!authCtx.isLoggedIn){
-  //   setArticles([]);
-  //   setLiked([]);
-  // }
-
   useEffect(() => {
-    const url =
-      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
-        const fetchData = async () => {
-          try {
-            const response = await fetch(url);
-            const data = await response.json();
-            setArticles(data);
-          } catch (error) {
-            console.log("error", error);
-          }
-        };
-        fetchData();
-  }, []);
-  //console.log(articles);
-  useEffect(() => {
-    // const url = "data/topic.json";
     const url =
       "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/topic.json";
     const fetchData = async () => {
@@ -60,45 +36,61 @@ function App() {
   console.log(articles);
   console.log(liked);
   useEffect(() => {
-      if (articles !== null && userId !== null) {
-        if (Object.keys(articles).length > 0) {
-          for (let article of articles) {
-            for (const key in article) {
-              if (article.hasOwnProperty(key)) {
-                  if (key === userId) {
-                    setLiked((prevState) => [...prevState, article]);
-                  }
-                }
-              } 
-            }
+    if (authCtx.isLoggedIn === false) {
+      console.log("I am here");
+      setLiked([]);
+    } else {
+      const url =
+        "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
+      const fetchData = async () => {
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          setArticles(data);
+        } catch (error) {
+          console.log("error", error);
         }
-      } 
+      };
+      fetchData();
+    }
+  }, [authCtx.isLoggedIn]);
+  useEffect(() => {
+    if (
+      articles !== null &&
+      userId !== null &&
+      Object.keys(articles).length > 0
+    ) {
+      for (let article of articles) {
+        for (const key in article) {
+          if (article.hasOwnProperty(key) && key === userId) {
+            setLiked((prevState) => [...prevState, article]);
+          }
+        }
+      }
+    }
   }, [articles]);
   useEffect(() => {
-    
-    if( liked !== null){
-      if(Object.keys( liked).length > 0){
-       for(const i of  liked){
-         const postFavData = async () => {
-           try {
- 
-               db.database().ref(`/articles/${i.id}/`).child(`${userId}`).set({likedBy :true})
-             // db.database().ref(`articles/${i.id}/`).update({
-             //  like: true
-             // })
-             console.log("liked sent to db");
-           }
-           catch(error){
-             console.log(error)
-           }
-         };
-         postFavData().catch(console.error);
-        
-        }
+    if (
+      authCtx.isLoggedIn === true &&
+      liked !== null &&
+      Object.keys(liked).length > 0
+    ) {
+      for (const i of liked) {
+        const postFavData = async () => {
+          try {
+            db.database()
+              .ref(`/articles/${i.id}/`)
+              .child(`${userId}`)
+              .set({ likedBy: true });
+            console.log("liked sent to db");
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        postFavData().catch(console.error);
       }
-      
-      }
-   }, [ liked]);
+    }
+  }, [liked]);
 
   return (
     <div>

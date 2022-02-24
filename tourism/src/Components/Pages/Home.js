@@ -12,7 +12,6 @@ import {
 import { Welcome, DivrHome } from "../../styles/HomeStyle";
 // import CircularProgress from "@mui/material/CircularProgress";
 import { useState, useEffect } from "react";
-// import Data from "../../data.json";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Button from "@mui/material/Button";
@@ -21,110 +20,52 @@ import AuthKey from "../store/authKey";
 import { useNavigate } from "react-router-dom";
 import db from "../../db";
 
-
 const Home = (props) => {
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
   const userId = authCtx.userId;
-  //console.log(userId);
   const [unliked, setUnliked] = useState([]);
- 
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
-//console.log(liked);
-// useEffect(() => {
-//   if (props.articles !== null && userId !== null) {
-//     if (Object.keys(props.articles).length > 0) {
-//       for (let article of props.articles) {
-//         for (const key in article) {
-//           if (article.hasOwnProperty(key)) {
-//               if (key === userId) {
-//                 props.setLiked((prevState) => [...prevState, article]);
-//               }
-//             }
-//           } 
-//         }
-//     }
-//   }
-// }, [props.articles]);
-console.log(props.liked);
   //getting the liked data
   const onHandleLiked = (idClicked) => {
     //this gives me 1 article that has been clicked
     const article = props.articles.find((item) => item.id === idClicked);
     // checking if the item already exists in the liked state
-    if( props.liked !== null){
-      const disliked =  props.liked.filter((item) =>  item.id === article.id);
-        if(Object.keys(disliked).length > 0){
-      setUnliked(disliked);
-        }
-      const filtered =  props.liked.filter((item) =>  item.id !== article.id);
+    if (props.liked !== null) {
+      const disliked = props.liked.filter((item) => item.id === article.id);
+      if (Object.keys(disliked).length > 0) {
+        setUnliked(disliked);
+      }
+      const filtered = props.liked.filter((item) => item.id !== article.id);
       props.liked.length === filtered.length
-        ?  props.setLiked((prevState) => [...prevState, article])
+        ? props.setLiked((prevState) => [...prevState, article])
         : filtered.length > 0
-        ?  props.setLiked(filtered)
-        :  props.setLiked([]);
-    }
-    else {
-      props.setLiked(article)
+        ? props.setLiked(filtered)
+        : props.setLiked([]);
+    } else {
+      props.setLiked(article);
     }
   };
-   //console.log(liked);
-  // console.log(unliked);
-  // console.log(Object.keys(liked).length);
-
-//  // pushing favourites (liked) to database
-  // useEffect(() => {
-    
-  //  if( props.liked !== null){
-  //    if(Object.keys( props.liked).length > 0){
-  //     for(const i of  props.liked){
-  //       const postFavData = async () => {
-  //         try {
-
-  //             db.database().ref(`/articles/${i.id}/`).child(`${userId}`).set({likedBy :true})
-  //           // db.database().ref(`articles/${i.id}/`).update({
-  //           //  like: true
-  //           // })
-  //           console.log("liked sent to db");
-  //         }
-  //         catch(error){
-  //           console.log(error)
-  //         }
-  //       };
-  //       postFavData().catch(console.error);
-       
-  //      }
-  //    }
-     
-  //    }
-  // }, [ props.liked]);
   useEffect(() => {
-    //if(unliked !== null){
-      if(Object.keys(unliked).length > 0){
-       for(const i of unliked){
-         const postData = async () => {
-           try {
-            db.database().ref(`/articles/${i.id}/`).child(`${userId}`).remove()
-            //  db.database().ref(`articles/${i.id}/`).update({
-              //  like:false
-            // })
-             console.log("unliked sent to db");
-           }
-           catch(error){
-             console.log(error)
-           }
-         };
-         postData().catch(console.error);
-        
-        }
-      //}
+    if (unliked !== null && Object.keys(unliked).length > 0) {
+      for (const i of unliked) {
+        const postData = async () => {
+          try {
+            db.database().ref(`/articles/${i.id}/`).child(`${userId}`).remove();
+            console.log("unliked sent to db");
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        postData().catch(console.error);
       }
-   }, [unliked]);
+    }
+  }, [unliked]);
   // //getting the data for article page (learn/ setLearn)
   const onHandleLearn = (idLearn) => {
-     const article = props.articles.find((item) => item.id === idLearn)
+    const article = props.articles.find((item) => item.id === idLearn);
     setLearn(article);
   };
   //console.log(learn);
@@ -293,7 +234,9 @@ console.log(props.liked);
                               aria-label="add to favorites"
                               onClick={() => onHandleLiked(con.id)}
                             >
-                              {!! props.liked.find((item) => item.id === con.id) ? (
+                              {!!props.liked.find(
+                                (item) => item.id === con.id
+                              ) ? (
                                 <FavoriteIcon color="secondary" />
                               ) : (
                                 <FavoriteBorderIcon />
