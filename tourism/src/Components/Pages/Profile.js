@@ -14,7 +14,15 @@ const Profile = (props) => {
       container
       spacing={2}
       sx={{
-        marginY: "80px",
+        //80
+        marginTop: {
+          xs: "125px",
+          sm: "60px",
+          md: "55px",
+          lg: "65px",
+          xl: "75px",
+        },
+        marginBottom: "10px",
         display: "flex",
         justifyContent: "center",
       }}
