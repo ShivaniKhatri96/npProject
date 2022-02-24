@@ -25,7 +25,7 @@ const Home = (props) => {
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
   const userId = authCtx.userId;
-  const [unliked, setUnliked] = useState([]);
+  // const [unliked, setUnliked] = useState([]);
   const [learn, setLearn] = useState([]);
   const arrLength = Object.keys(learn).length;
   //getting the liked data
@@ -36,7 +36,7 @@ const Home = (props) => {
     if (props.liked !== null) {
       const disliked = props.liked.filter((item) => item.id === article.id);
       if (Object.keys(disliked).length > 0) {
-        setUnliked(disliked);
+        props.setUnliked(disliked);
       }
       const filtered = props.liked.filter((item) => item.id !== article.id);
       props.liked.length === filtered.length
@@ -48,21 +48,21 @@ const Home = (props) => {
       props.setLiked(article);
     }
   };
-  useEffect(() => {
-    if (unliked !== null && Object.keys(unliked).length > 0) {
-      for (const i of unliked) {
-        const postData = async () => {
-          try {
-            db.database().ref(`/articles/${i.id}/`).child(`${userId}`).remove();
-            console.log("unliked sent to db");
-          } catch (error) {
-            console.log(error);
-          }
-        };
-        postData().catch(console.error);
-      }
-    }
-  }, [unliked]);
+  // useEffect(() => {
+  //   if (unliked !== null && Object.keys(unliked).length > 0) {
+  //     for (const i of unliked) {
+  //       const postData = async () => {
+  //         try {
+  //           db.database().ref(`/articles/${i.id}/`).child(`${userId}`).remove();
+  //           console.log("unliked sent to db");
+  //         } catch (error) {
+  //           console.log(error);
+  //         }
+  //       };
+  //       postData().catch(console.error);
+  //     }
+  //   }
+  // }, [unliked]);
   // //getting the data for article page (learn/ setLearn)
   const onHandleLearn = (idLearn) => {
     const article = props.articles.find((item) => item.id === idLearn);

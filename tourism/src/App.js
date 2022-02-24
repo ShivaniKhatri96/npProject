@@ -18,6 +18,7 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState([]);
   const [liked, setLiked] = useState([]);
+  const [unliked, setUnliked] = useState([]);
   const userId = authCtx.userId;
   useEffect(() => {
     const url =
@@ -37,8 +38,8 @@ function App() {
   console.log(liked);
   useEffect(() => {
     if (authCtx.isLoggedIn === false) {
-      console.log("I am here");
       setLiked([]);
+      setUnliked([]);
     } else {
       const url =
         "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
@@ -91,6 +92,25 @@ function App() {
       }
     }
   }, [liked]);
+  useEffect(() => {
+    if (
+      authCtx.isLoggedIn === true &&
+      unliked !== null &&
+      Object.keys(unliked).length > 0
+    ) {
+      for (const i of unliked) {
+        const postData = async () => {
+          try {
+            db.database().ref(`/articles/${i.id}/`).child(`${userId}`).remove();
+            console.log("unliked sent to db");
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        postData().catch(console.error);
+      }
+    }
+  }, [unliked]);
 
   return (
     <div>
@@ -106,6 +126,8 @@ function App() {
               setTopic={setTopic}
               liked={liked}
               setLiked={setLiked}
+              unliked={unliked}
+              setUnliked={setUnliked}
             />
           }
         ></Route>
@@ -119,7 +141,7 @@ function App() {
         {authCtx.isLoggedIn && (
           <Route
             path="/profile"
-            element={<Profile liked={liked} setLiked={liked} />}
+            element={<Profile liked={liked} setLiked={setLiked} unliked={unliked} setUnliked={setUnliked} />}
           ></Route>
         )}
         {authCtx.isLoggedIn && (
