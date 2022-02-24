@@ -7,30 +7,30 @@ import {
   Typography,
   CardActions,
 } from "@mui/material";
+import { DivrFav, Typo } from "../../styles/ProfileStyle";
 const Profile = (props) => {
   return (
-      <Grid
+    <Grid
       container
-      spacing={3}
+      spacing={2}
       sx={{
         marginY: "80px",
         display: "flex",
-        justifyContent: "start",
+        justifyContent: "center",
       }}
     >
-      <Grid item xs={1} />
-            <Grid item xs={10}>
-        <Typography className="heading" variant="h3" component="div">
-          Favorites
-        </Typography>
+      <Grid item xs={4} />
+      <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
+        <Typo className="heading" component="div">Favorites</Typo>
       </Grid>
-      <Grid item xs={1} />
-       <Grid item xs={1} />
+      <Grid item xs={4} />
+      <Grid item xs={10}>
+        <DivrFav />
+      </Grid>
       {props.liked.map((con) => {
         const img = process.env.PUBLIC_URL + con.img;
         return (
-          <>
-           <Grid item xs={10} sm={5} lg={2.5} key={con.id}>
+          <Grid item xs={10} sm={5} lg={2.5} key={con.id}>
             <Card>
               <CardMedia
                 component="img"
@@ -56,10 +56,8 @@ const Profile = (props) => {
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={1} sx={{display:xs:{flex}}}/>
-          </>
         );
-      })} 
+      })}
     </Grid>
   );
 };
