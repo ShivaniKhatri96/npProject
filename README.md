@@ -1,11 +1,11 @@
 # Tourism Website
 - You can click on the picture below or [here](https://np-project-33535.web.app/) to visit the website
 - The website loads slowly since it loads lot of information. Please be patient while the page is loading. I will seach for solutions in the future. 
-[![Tourism Website](./src/Components/readmePic/tourismWebsite.png)](https://np-project-33535.web.app/)
+[![Tourism Website](./tourism/src/Components/readmePic/tourismWebsite.png)](https://np-project-33535.web.app/)
 ## Country: Nepal
 Even though I have a Belgian Nationality, I am originally from Nepal. So, I wanted to create a website about Nepal to honor my childhood memories. 
 ## Color Palette
- ![color palette](./src/Components/readmePic/colorPalette.png)
+ ![color palette](./tourism/src/Components/readmePic/colorPalette.png)
 ## Tools
 - React 
 - Material UI
@@ -26,9 +26,9 @@ Even though I have a Belgian Nationality, I am originally from Nepal. So, I want
 ### Responsive layout
 - Everything done so far has a responsive design that adapts to different screen sizes
 - Below you can see example from home page for xs screens, sm screens and higher, and lg screens and higher
-![xs screens](./src/Components/readmePic/xs.png)
-![sm screens and higher](./src/Components/readmePic/sm.png)
-![sm screens and higher](./src/Components/readmePic/lg.png)
+![xs screens](./tourism/src/Components/readmePic/xs.png)
+![sm screens and higher](./tourism/src/Components/readmePic/sm.png)
+![sm screens and higher](./tourism/src/Components/readmePic/lg.png)
 
 ## Currently working on
 - Searchbar
