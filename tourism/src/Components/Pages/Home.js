@@ -11,188 +11,47 @@ import {
 } from "@mui/material";
 import { Welcome, DivrHome } from "../../styles/HomeStyle";
 // import CircularProgress from "@mui/material/CircularProgress";
-import { useState, useEffect } from "react";
-// import Data from "../../data.json";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
 import { useNavigate } from "react-router-dom";
-import db from "../../db";
 
-
-const Home = () => {
+const Home = (props) => {
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
-  const userId = authCtx.userId;
-  //console.log(userId);
-  const [articles, setArticles] = useState([]);
-  const [topic, setTopic] = useState([]);
-  const [liked, setLiked] = useState([]);
-  const [unliked, setUnliked]= useState([]);
-  const [learn, setLearn] = useState([]);
-  const arrLength = Object.keys(learn).length;
-  useEffect(() => {
-    const url =
-      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setArticles(data);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-    fetchData();
-  }, []);
-  //console.log(articles);
-  useEffect(() => {
-    // const url = "data/topic.json";
-    const url =
-      "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/topic.json";
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setTopic(data);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-    fetchData();
-  }, []);
- 
-useEffect(() => {
-    if(articles !== null){
-      if(Object.keys(articles).length > 0){
-        for(let article of articles){
-            for (const key in article){
-              if(article.hasOwnProperty(key)){
-                if(key === userId){
-                  setLiked(prevState => [...prevState, article]);
-                 }
-              }
-            }
-        }
-      }
-    }
-  }, [articles]);
-//console.log(liked);
-
   //getting the liked data
   const onHandleLiked = (idClicked) => {
     //this gives me 1 article that has been clicked
-    const article = articles.find((item) => item.id === idClicked);
+    const article = props.articles.find((item) => item.id === idClicked);
     // checking if the item already exists in the liked state
-    if(liked !== null){
-      const disliked = liked.filter((item) =>  item.id === article.id);
-        if(Object.keys(disliked).length > 0){
-        setUnliked(disliked);
-        }
-      const filtered = liked.filter((item) =>  item.id !== article.id);
-      liked.length === filtered.length
-        ? setLiked((prevState) => [...prevState, article])
+    if (props.liked !== null) {
+      const disliked = props.liked.filter((item) => item.id === article.id);
+      if (Object.keys(disliked).length > 0) {
+        props.setUnliked(disliked);
+      }
+      const filtered = props.liked.filter((item) => item.id !== article.id);
+      props.liked.length === filtered.length
+        ? props.setLiked((prevState) => [...prevState, article])
         : filtered.length > 0
-        ? setLiked(filtered)
-        : setLiked([]);
-    }
-    else {
-      setLiked(article)
+        ? props.setLiked(filtered)
+        : props.setLiked([]);
+    } else {
+      props.setLiked(article);
     }
   };
-   //console.log(liked);
-  // console.log(unliked);
-  // console.log(Object.keys(liked).length);
 
-//  // pushing favourites (liked) to database
-  useEffect(() => {
-    
-   if(liked !== null){
-     if(Object.keys(liked).length > 0){
-      for(const i of liked){
-        const postFavData = async () => {
-          try {
-
-              db.database().ref(`/articles/${i.id}/`).child(`${userId}`).set({likedBy :true})
-            // db.database().ref(`articles/${i.id}/`).update({
-            //  like: true
-            // })
-            console.log("sent to db");
-          }
-          catch(error){
-            console.log(error)
-          }
-        };
-        postFavData().catch(console.error);
-       
-       }
-     }
-     
-     }
-  }, [liked]);
-  useEffect(() => {
-    //if(unliked !== null){
-      if(Object.keys(unliked).length > 0){
-       for(const i of unliked){
-         const postData = async () => {
-           try {
-            db.database().ref(`/articles/${i.id}/`).child(`${userId}`).remove()
-            //  db.database().ref(`articles/${i.id}/`).update({
-              //  like:false
-            // })
-             console.log("sent to db");
-           }
-           catch(error){
-             console.log(error)
-           }
-         };
-         postData().catch(console.error);
-        
-        }
-      //}
-      }
-   }, [unliked]);
   // //getting the data for article page (learn/ setLearn)
   const onHandleLearn = (idLearn) => {
-     const article = articles.find((item) => item.id === idLearn)
-    setLearn(article);
+    const article = props.articles.find((item) => item.id === idLearn);
+    localStorage.setItem('article', JSON.stringify(article));
+    navigate("/article");
   };
-  //console.log(learn);
-  // // console.log(Object.keys(learn).length);
 
-  // //pushing article (learn) to database
-  useEffect(() => {
-    const postData = async () => {
-      if (arrLength !== 0) {
-        const res = await fetch(
-          "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              learn,
-            }),
-          }
-        );
-        if (res) {
-          console.log("Data stored");
-          setLearn([]);
-          navigate("/article");
-        } else {
-          console.log("fix the issue!!");
-        }
-      }
-    };
 
-    postData().catch(console.error);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [learn]);
   return (
     <div>
       <Card
@@ -282,7 +141,7 @@ useEffect(() => {
         </Grid>
         <Grid item xs={1} />
       </Grid>
-      {topic.map((post) => {
+      {props.topic.map((post) => {
         return (
           <div key={post.id}>
             <Grid
@@ -299,7 +158,7 @@ useEffect(() => {
                   {post.title}
                 </Typography>
               </Grid>
-              {articles
+              {props.articles
                 .filter((article) => article.topic === post.id)
                 .map((con) => {
                   const img = process.env.PUBLIC_URL + con.img;
@@ -326,7 +185,9 @@ useEffect(() => {
                               aria-label="add to favorites"
                               onClick={() => onHandleLiked(con.id)}
                             >
-                              {!!liked.find((item) => item.id === con.id) ? (
+                              {!!props.liked.find(
+                                (item) => item.id === con.id
+                              ) ? (
                                 <FavoriteIcon color="secondary" />
                               ) : (
                                 <FavoriteBorderIcon />
