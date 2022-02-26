@@ -40,35 +40,13 @@ const Header = () => {
     setAnchorEl(null);
   };
   const imgHandler = (e) => {
-    e.preventDefault();
+    
     //setHome(true);
     navigate("./home");
+    e.preventDefault();
   };
   //console.log(home);
-  // useEffect(() => {
-  //   const deleteData = async () => {
-  //    if(home === true){
-  //     const res = await fetch(
-  //       "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",{
-  //         method: "DELETE",
-  //         headers: {
-  //           "Content-Type":"application/json",
-  //         },
-  //       }
-  //     );
-  //     if(res){
-  //       console.log("Article shown is deleted");
-  //       setHome(false);
-  //       navigate("/home");
-  //     }
-  //     else{
-  //       console.log("fix the issue!!");
-  //     }
-  //    }
-  //   };
-  //   deleteData();
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [home]);
+
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,

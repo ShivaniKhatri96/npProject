@@ -10,40 +10,27 @@ import {
 } from "@mui/material";
 import { DivrFav, Typo } from "../../styles/ProfileStyle";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { useNavigate } from "react-router-dom";
 const Profile = (props) => {
+  let navigate = useNavigate();
   const deleteHandler= (id) => {
    const filtered = props.liked.filter((item) => item.id !== id);
    props.setLiked(filtered);
    const remove = props.liked.filter((item) => item.id === id);
     props.setUnliked(remove);
   }
+  const onHandleLearn = (idLearn) => {
+    const article = props.liked.find((item) => item.id === idLearn);
+    localStorage.setItem('article', JSON.stringify(article));
+    navigate("/article");
+  };
+  //console.log(props.liked);
 
-  console.log(props.liked);
-  // const onHandleLiked = (idClicked) => {
-  //   //this gives me 1 article that has been clicked
-  //   const article = props.articles.find((item) => item.id === idClicked);
-  //   // checking if the item already exists in the liked state
-  //   if (props.liked !== null) {
-  //     const disliked = props.liked.filter((item) => item.id === article.id);
-  //     if (Object.keys(disliked).length > 0) {
-  //       setUnliked(disliked);
-  //     }
-  //     const filtered = props.liked.filter((item) => item.id !== article.id);
-  //     props.liked.length === filtered.length
-  //       ? props.setLiked((prevState) => [...prevState, article])
-  //       : filtered.length > 0
-  //       ? props.setLiked(filtered)
-  //       : props.setLiked([]);
-  //   } else {
-  //     props.setLiked(article);
-  //   }
-  // };
   return (
     <Grid
       container
       spacing={2}
       sx={{
-        //80
         marginTop: {
           xs: "125px",
           sm: "60px",
@@ -88,7 +75,7 @@ const Profile = (props) => {
               <CardActions sx={{display:"flex", justifyContent: "space-between"}}>
                 <Button
                   size="small"
-                  // onClick={() => onHandleLearn(con.id)}
+                  onClick={() => onHandleLearn(con.id)}
                 >
                   Learn more
                 </Button>

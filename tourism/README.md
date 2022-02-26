@@ -1,4 +1,6 @@
 # Tourism Website
+- You can click on the picture below or [here](https://np-project-33535.web.app/) to visit the website
+- The website loads slowly since it loads lot of information. Please be patient while the page is loading. I will seach for solutions in the future. 
 [![Tourism Website](./src/Components/readmePic/tourismWebsite.png)](https://np-project-33535.web.app/)
 ## Country: Nepal
 Even though I have a Belgian Nationality, I am originally from Nepal. So, I wanted to create a website about Nepal to honor my childhood memories. 
@@ -14,10 +16,13 @@ Even though I have a Belgian Nationality, I am originally from Nepal. So, I want
 ### Home page
 - Card information fetched from database
 - Like/ unlike feature is authenticated
-- One user can only access their own like/unlike list
 - Articles can be read with and without logging in 
 ### Connect page
 - Sign up and log in pages are completed with authentication
+### Profile page
+- favorites list is added
+- Articles can be read 
+- Card can be deleted from favorites list 
 ### Responsive layout
 - Everything done so far has a responsive design that adapts to different screen sizes
 - Below you can see example from home page for xs screens, sm screens and higher, and lg screens and higher
@@ -25,12 +30,10 @@ Even though I have a Belgian Nationality, I am originally from Nepal. So, I want
 ![sm screens and higher](./src/Components/readmePic/sm.png)
 ![sm screens and higher](./src/Components/readmePic/lg.png)
 
-
 ## Currently working on
-### Profile page
-- favorites list will be created
-## Next 
 - Searchbar
+## Next 
+- fixing the validations in connect page
 ## Things I want to improve later
 - Home page video
 - keeping the card length same. Right now, in some cases, the card length fluctuates due to the different amount of words in each card

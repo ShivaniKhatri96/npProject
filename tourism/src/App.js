@@ -14,12 +14,13 @@ import { useState, useEffect } from "react";
 import db from "./db";
 function App() {
   const authCtx = useContext(AuthKey);
-  console.log(authCtx.isLoggedIn);
+  //console.log(authCtx.isLoggedIn);
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState([]);
   const [liked, setLiked] = useState([]);
   const [unliked, setUnliked] = useState([]);
   const userId = authCtx.userId;
+
   useEffect(() => {
     const url =
       "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/topic.json";
@@ -34,8 +35,8 @@ function App() {
     };
     fetchData();
   }, []);
-  console.log(articles);
-  console.log(liked);
+  //console.log(articles);
+  //console.log(liked);
   useEffect(() => {
     if (authCtx.isLoggedIn === false) {
       setLiked([]);

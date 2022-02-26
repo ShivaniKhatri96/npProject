@@ -11,23 +11,17 @@ import {
 } from "@mui/material";
 import { Welcome, DivrHome } from "../../styles/HomeStyle";
 // import CircularProgress from "@mui/material/CircularProgress";
-import { useState, useEffect } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import AuthKey from "../store/authKey";
 import { useNavigate } from "react-router-dom";
-import db from "../../db";
 
 const Home = (props) => {
   let navigate = useNavigate();
   const authCtx = useContext(AuthKey);
   const isLoggedIn = authCtx.isLoggedIn;
-  const userId = authCtx.userId;
-  // const [unliked, setUnliked] = useState([]);
-  const [learn, setLearn] = useState([]);
-  const arrLength = Object.keys(learn).length;
   //getting the liked data
   const onHandleLiked = (idClicked) => {
     //this gives me 1 article that has been clicked
@@ -48,59 +42,16 @@ const Home = (props) => {
       props.setLiked(article);
     }
   };
-  // useEffect(() => {
-  //   if (unliked !== null && Object.keys(unliked).length > 0) {
-  //     for (const i of unliked) {
-  //       const postData = async () => {
-  //         try {
-  //           db.database().ref(`/articles/${i.id}/`).child(`${userId}`).remove();
-  //           console.log("unliked sent to db");
-  //         } catch (error) {
-  //           console.log(error);
-  //         }
-  //       };
-  //       postData().catch(console.error);
-  //     }
-  //   }
-  // }, [unliked]);
+
   // //getting the data for article page (learn/ setLearn)
   const onHandleLearn = (idLearn) => {
     const article = props.articles.find((item) => item.id === idLearn);
-    setLearn(article);
+    localStorage.setItem('article', JSON.stringify(article));
+    navigate("/article");
   };
-  //console.log(learn);
-  // // console.log(Object.keys(learn).length);
 
-  // //pushing article (learn) to database
-  useEffect(() => {
-    const postData = async () => {
-      if (arrLength !== 0) {
-        const res = await fetch(
-          "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/article.json",
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              learn,
-            }),
-          }
-        );
-        if (res) {
-          console.log("Data stored");
-          setLearn([]);
-          navigate("/article");
-        } else {
-          console.log("fix the issue!!");
-        }
-      }
-    };
 
-    postData().catch(console.error);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [learn]);
   return (
     <div>
       <Card
