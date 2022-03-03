@@ -38,11 +38,7 @@ function App() {
   //console.log(articles);
   //console.log(liked);
   useEffect(() => {
-    if (authCtx.isLoggedIn === false) {
-      setLiked([]);
-      setUnliked([]);
-    } else {
-      const url =
+    const url =
         "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
       const fetchData = async () => {
         try {
@@ -54,7 +50,24 @@ function App() {
         }
       };
       fetchData();
-    }
+    if (authCtx.isLoggedIn === false) {
+      setLiked([]);
+      setUnliked([]);
+     } 
+    //else {
+    //   const url =
+    //     "https://np-project-33535-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
+    //   const fetchData = async () => {
+    //     try {
+    //       const response = await fetch(url);
+    //       const data = await response.json();
+    //       setArticles(data);
+    //     } catch (error) {
+    //       console.log("error", error);
+    //     }
+    //   };
+    //   fetchData();
+    // }
   }, [authCtx.isLoggedIn]);
   useEffect(() => {
     if (
