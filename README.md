@@ -30,10 +30,6 @@ Even though I have a Belgian Nationality, I am originally from Nepal. So, I want
 ![sm screens and higher](./tourism/src/Components/readmePic/sm.png)
 ![sm screens and higher](./tourism/src/Components/readmePic/lg.png)
 
-## Currently working on
-- Searchbar
-## Next 
-- fixing the validations in connect page
 ## Things I want to improve later
 - Home page video
 - keeping the card length same. Right now, in some cases, the card length fluctuates due to the different amount of words in each card
