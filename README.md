@@ -48,3 +48,5 @@ Even though I have a Belgian Nationality, I am originally from Nepal. So, I want
 - Holi: [altitudehimalaya.com](https://www.altitudehimalaya.com/blog/holi-festival-in-nepal) 
 ### Disclaimer
 This is a personal project for building my portfolio. If you wish to travel to Nepal and want correct information, check the official link mentioned above!!
+### Note
+> I might continue this project in the future since it's one of my passion project. However, at this moment, my priority is to learn new technologies and do projects with it. Thank you for your understanding!
